@@ -1,0 +1,11 @@
+#planeticon{
+	transform: scale(1.5);
+}
+
+#localglobal{
+	width: max-content !important;
+}
+
+.project-image{
+	background-color: #96D3F3;
+}
