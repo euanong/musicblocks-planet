@@ -1,5 +1,5 @@
 #planeticon{
-	transform: scale(1.5);
+	font-size: 3rem;
 }
 
 #localglobal{
@@ -8,4 +8,11 @@
 
 .project-image{
 	background-color: #96D3F3;
+}
+.project-icon{
+	margin-right: 3px !important;
+}
+.flexcontainer{
+	display: flex;
+	justify-content: space-between;
 }
