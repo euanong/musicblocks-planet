@@ -135,9 +135,8 @@
 .chipselect:not(.selected){
 	cursor: pointer;
 }
-#view-more-chips{
+.centre-button{
 	left: 50%;
     transform: translateX(-50%);
     margin-top: 10px;
-}
 }
