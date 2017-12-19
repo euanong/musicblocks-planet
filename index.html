@@ -24,7 +24,7 @@
             <div class="nav-content" id="searchcontainer" style="display: none;">
                 <div class="container">
                     <div class="input-field search">
-                        <input placeholder="Search" id="global-search" type="text">
+                        <i class="material-icons prefix" id="searchicon">search</i><input placeholder="Search for a Project" id="global-search" type="text">
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="card-action">
-                                                            <a href="#" onclick="toggleAdvanced('s1');">Advanced Options</a>
+                                                            <a href="#" onclick="toggleExpandable('s1','shareurl-advanced');">Advanced Options</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -247,48 +247,53 @@
                     <h3 class="header center light-green-text" id="globaltitle">Explore Projects</h3>
                 </div>
             </div>
+            <div class="section">
+                <div class="container">
+                    <div class="flexchips">
+                        <div class="chipselect selected">
+                        All Projects
+                        </div>
+                        <div class="chipselect">
+                            Examples
+                        </div>
+                        <div class="chipselect">
+                            Music
+                        </div>
+                        <div class="chipselect">
+                            Art
+                        </div>
+                        <div class="chipselect">
+                            Timbre
+                        </div>
+                        <div class="chipselect">
+                            Tone
+                        </div>
+                    </div>
+                    <div class="flexchips", id="morechips">
+                        <div class="chipselect">
+                            More Tags
+                        </div>
+                        <div class="chipselect">
+                            Blah
+                        </div>
+                        <div class="chipselect">
+                            Lorem
+                        </div>
+                        <div class="chipselect">
+                            Ipsum
+                        </div>
+                        <div class="chipselect">
+                            Dolor
+                        </div>
+                    </div>
+                    <a class="waves-effect btn-flat" id="view-more-chips" onclick="toggleExpandable('morechips','flexchips');toggleText('view-more-chips','View More','View Less');">View More</a>
+                </div>
+            </div>
             <div class="container">
                 <div class="section">
                     <div class="row">
                         <div class="col s12">
                             <div class="section">
-                                <div class="col s12 m6 l4">                     
-                                    <div class="card">
-                                        <div class="card-image">
-                                            <img class="project-image" src="images/planetgraphic.png">
-                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger" href="#publisher"><i class="material-icons">cloud_upload</i></a>
-                                        </div>
-                                        <div class="card-content">
-                                            <input class="card-title grey-text text-darken-4" value="My Project" />
-                                        </div>
-                                        <div class="card-action">
-                                            <div class="flexcontainer">
-                                                <a class="project-icon" href="#"><i class="material-icons">edit</i></a>
-                                                <div>
-                                                    <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
-                                                    <div class="card share-card">
-                                                        <div class="card-content shareurltext">
-                                                            <div class="shareurltitle">Share</div>
-                                                            <input type="text" name="shareurl" class="shareurlinput" value="https://walterbender.github.io/musicblocks/index.html?file=MusicBlocks_My_Project.tb">
-                                                            <div class="shareurl-advanced" id="s1">
-                                                                <div class="shareurltitle">Flags</div>
-                                                                <div><input type="checkbox" name="run" id="checkbox1run"><label for="checkbox1run">Run project on startup.</label></div>
-                                                                <div><input type="checkbox" name="show" id="checkbox1show"><label for="checkbox1show">Show code blocks on startup.</label></div>
-                                                                <div><input type="checkbox" name="collapse" id="checkbox1collapse"><label for="checkbox1collapse">Collapse code blocks on startup.</label></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-action">
-                                                            <a href="#" onclick="toggleAdvanced('s1');">Advanced Options</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <a class="project-icon" href="#"><i class="material-icons">share</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">file_download</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">merge_type</i></a>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </div>
                                 <div class="col s12 m6 l4">                     
                                     <div class="card">
                                         <div class="card-image">
@@ -464,12 +469,21 @@
                     document.getElementById("searchcontainer").style.display = "none";
                 }
             }
-            function toggleAdvanced(id){
-                var d = document.getElementById(id).className;
-                if (d=="shareurl-advanced open"){
-                    document.getElementById(id).className = "shareurl-advanced";
+            function toggleText(id, a, b){
+                var t = document.getElementById(id).innerHTML;
+                console.log(t);
+                if (t.indexOf(a)!==-1){
+                    document.getElementById(id).innerHTML = t.replace(a, b);
                 } else {
-                    document.getElementById(id).className = "shareurl-advanced open";
+                    document.getElementById(id).innerHTML = t.replace(b, a);
+                }
+            }
+            function toggleExpandable(id, c){
+                var d = document.getElementById(id).className;
+                if (d==c+" open"){
+                    document.getElementById(id).className = c;
+                } else {
+                    document.getElementById(id).className = c+" open";
                 }
             }
             $(document).ready(function() {
