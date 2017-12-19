@@ -11,12 +11,21 @@
 #tagsadd{
 	padding-top: 10px;
 }
-
+.col{
+	margin-left: 0 !important;
+}
 .project-image{
 	background-color: #96D3F3;
 }
 .project-icon{
 	margin-right: 3px !important;
+}
+.projectscontainer{
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: left;
 }
 .flexcontainer{
 	display: -webkit-box;
@@ -132,11 +141,27 @@
 	background-color: #26a69a;
     color: #fff;
 }
-.chipselect:not(.selected){
+.chipselect.cursor:not(.selected){
 	cursor: pointer;
 }
 .centre-button{
 	left: 50%;
     transform: translateX(-50%);
     margin-top: 10px;
+}
+.global-title {
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.subheading {
+	font-weight: 300;
+    font-size: 1.1rem;
+}
+.no-margin-bottom {
+	margin-bottom: 0px !important;
+}
+.likes-count {
+	position: relative;
+    top: -7px;
 }
