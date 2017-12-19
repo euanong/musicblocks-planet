@@ -165,3 +165,9 @@
 	position: relative;
     top: -7px;
 }
+#search-close {
+	display: none;
+    position:  absolute;
+    top:  -4px;
+    cursor:  pointer;
+}

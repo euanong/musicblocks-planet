@@ -24,7 +24,7 @@
             <div class="nav-content" id="searchcontainer" style="display: none;">
                 <div class="container">
                     <div class="input-field search">
-                        <i class="material-icons prefix" id="searchicon">search</i><input placeholder="Search for a Project" id="global-search" type="text">
+                        <i class="material-icons prefix" id="searchicon">search</i><input placeholder="Search for a Project" id="global-search" type="text"><span><i class="material-icons" id="search-close" onclick="clearSearchBar();">clear</i></span>
                     </div>
                 </div>
             </div>
@@ -805,6 +805,9 @@
                     document.getElementById(id).className = c+" open";
                 }
             }
+            function clearSearchBar(){
+                document.getElementById("global-search").value = "";
+            }
             $(document).ready(function() {
                 var tags = {
                     'Music': 123,
@@ -854,6 +857,14 @@
                     });
                     $('#tagsadd :input').focus();
                     console.log($('#tagsadd').material_chip('data'));
+                });
+
+                document.getElementById("global-search").addEventListener('input', function (evt) {
+                        if(this.value!=""){
+                            document.getElementById("search-close").style.display = "initial";
+                        } else {
+                            document.getElementById("search-close").style.display = "none";
+                        }
                 });
             });
         </script>
