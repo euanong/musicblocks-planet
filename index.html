@@ -2,7 +2,7 @@
 <html>
     <head>
         <!--Import Google Icon Font-->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" href="fonts/material-icons.css" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
         <!--Import style.css-->
@@ -13,12 +13,20 @@
     </head>
 
     <body>
-        <nav class="light-green lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><i class="material-icons" id="planeticon">public</i>Planet</a>
+        <nav class="nav-extended light-green lighten-1" role="navigation">
+            <div class="nav-wrapper container">
+                <a id="logo-container" href="#" class="brand-logo"><i class="material-icons" id="planeticon">public</i>Planet</a>
                 <ul class="right tabs tabs-transparent" id="localglobal">
-                    <li class="tab"><a class="active" href="#local">Local</a></li>
-                    <li class="tab"><a href="#global">Global</a></li>
+                    <li class="tab"><a class="active" href="#local" onclick="toggleSearch(false);">Local</a></li>
+                    <li class="tab"><a href="#global" onclick="toggleSearch(true);">Global</a></li>
                 </ul>
+            </div>
+            <div class="nav-content">
+                <div class="container">
+                    <div class="input-field search">
+                        <input placeholder="Placeholder" id="global-search" type="text">
+                    </div>
+                </div>
             </div>
         </nav>
 
@@ -45,7 +53,24 @@
                                         <div class="card-action">
                                             <div class="flexcontainer">
                                                 <a class="project-icon" href="#"><i class="material-icons">edit</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
+                                                <div>
+                                                    <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
+                                                    <div class="card share-card">
+                                                        <div class="card-content shareurltext">
+                                                            <div class="shareurltitle">Share</div>
+                                                            <input type="text" name="shareurl" class="shareurlinput" value="https://walterbender.github.io/musicblocks/index.html?file=MusicBlocks_My_Project.tb">
+                                                            <div class="shareurl-advanced" id="s1">
+                                                                <div class="shareurltitle">Flags</div>
+                                                                <div><input type="checkbox" name="run" id="checkbox1run"><label for="checkbox1run">Run project on startup.</label></div>
+                                                                <div><input type="checkbox" name="show" id="checkbox1show"><label for="checkbox1show">Show code blocks on startup.</label></div>
+                                                                <div><input type="checkbox" name="collapse" id="checkbox1collapse"><label for="checkbox1collapse">Collapse code blocks on startup.</label></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-action">
+                                                            <a href="#" onclick="toggleAdvanced('s1');">Advanced Options</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <a class="project-icon" href="#"><i class="material-icons">share</i></a>
                                                 <a class="project-icon" href="#"><i class="material-icons">file_download</i></a>
                                                 <a class="project-icon" href="#"><i class="material-icons">merge_type</i></a>
@@ -222,12 +247,224 @@
                     <h3 class="header center light-green-text" id="globaltitle">Explore Projects</h3>
                 </div>
             </div>
+            <div class="container">
+                <div class="section">
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="section">
+                                <div class="col s12 m6 l4">                     
+                                    <div class="card">
+                                        <div class="card-image">
+                                            <img class="project-image" src="images/planetgraphic.png">
+                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger" href="#publisher"><i class="material-icons">cloud_upload</i></a>
+                                        </div>
+                                        <div class="card-content">
+                                            <input class="card-title grey-text text-darken-4" value="My Project" />
+                                        </div>
+                                        <div class="card-action">
+                                            <div class="flexcontainer">
+                                                <a class="project-icon" href="#"><i class="material-icons">edit</i></a>
+                                                <div>
+                                                    <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
+                                                    <div class="card share-card">
+                                                        <div class="card-content shareurltext">
+                                                            <div class="shareurltitle">Share</div>
+                                                            <input type="text" name="shareurl" class="shareurlinput" value="https://walterbender.github.io/musicblocks/index.html?file=MusicBlocks_My_Project.tb">
+                                                            <div class="shareurl-advanced" id="s1">
+                                                                <div class="shareurltitle">Flags</div>
+                                                                <div><input type="checkbox" name="run" id="checkbox1run"><label for="checkbox1run">Run project on startup.</label></div>
+                                                                <div><input type="checkbox" name="show" id="checkbox1show"><label for="checkbox1show">Show code blocks on startup.</label></div>
+                                                                <div><input type="checkbox" name="collapse" id="checkbox1collapse"><label for="checkbox1collapse">Collapse code blocks on startup.</label></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-action">
+                                                            <a href="#" onclick="toggleAdvanced('s1');">Advanced Options</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a class="project-icon" href="#"><i class="material-icons">share</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">file_download</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">merge_type</i></a>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="col s12 m6 l4">                     
+                                    <div class="card">
+                                        <div class="card-image">
+                                            <img class="project-image" src="images/planetgraphic.png">
+                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger" href="#publisher"><i class="material-icons">cloud_upload</i></a>
+                                        </div>
+                                        <div class="card-content">
+                                            <input class="card-title grey-text text-darken-4" value="My Project" />
+                                        </div>
+                                        <div class="card-action">
+                                            <div class="flexcontainer">
+                                                <a class="project-icon" href="#"><i class="material-icons">edit</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">share</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">file_download</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">merge_type</i></a>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="col s12 m6 l4">                     
+                                    <div class="card">
+                                        <div class="card-image">
+                                            <img class="project-image" src="images/planetgraphic.png">
+                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger" href="#publisher"><i class="material-icons">cloud_upload</i></a>
+                                        </div>
+                                        <div class="card-content">
+                                            <input class="card-title grey-text text-darken-4" value="My Project" />
+                                        </div>
+                                        <div class="card-action">
+                                            <div class="flexcontainer">
+                                                <a class="project-icon" href="#"><i class="material-icons">edit</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">share</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">file_download</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">merge_type</i></a>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="col s12 m6 l4">                     
+                                    <div class="card">
+                                        <div class="card-image">
+                                            <img class="project-image" src="images/planetgraphic.png">
+                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger" href="#publisher"><i class="material-icons">cloud_upload</i></a>
+                                        </div>
+                                        <div class="card-content">
+                                            <input class="card-title grey-text text-darken-4" value="My Project" />
+                                        </div>
+                                        <div class="card-action">
+                                            <div class="flexcontainer">
+                                                <a class="project-icon" href="#"><i class="material-icons">edit</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">share</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">file_download</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">merge_type</i></a>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="col s12 m6 l4">                     
+                                    <div class="card">
+                                        <div class="card-image">
+                                            <img class="project-image" src="images/planetgraphic.png">
+                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger" href="#publisher"><i class="material-icons">cloud_upload</i></a>
+                                        </div>
+                                        <div class="card-content">
+                                            <input class="card-title grey-text text-darken-4" value="My Project" />
+                                        </div>
+                                        <div class="card-action">
+                                            <div class="flexcontainer">
+                                                <a class="project-icon" href="#"><i class="material-icons">edit</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">share</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">file_download</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">merge_type</i></a>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="col s12 m6 l4">                     
+                                    <div class="card">
+                                        <div class="card-image">
+                                            <img class="project-image" src="images/planetgraphic.png">
+                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger" href="#publisher"><i class="material-icons">cloud_upload</i></a>
+                                        </div>
+                                        <div class="card-content">
+                                            <input class="card-title grey-text text-darken-4" value="My Project" />
+                                        </div>
+                                        <div class="card-action">
+                                            <div class="flexcontainer">
+                                                <a class="project-icon" href="#"><i class="material-icons">edit</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">share</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">file_download</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">merge_type</i></a>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="col s12 m6 l4">                     
+                                    <div class="card">
+                                        <div class="card-image">
+                                            <img class="project-image" src="images/planetgraphic.png">
+                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger" href="#publisher"><i class="material-icons">cloud_upload</i></a>
+                                        </div>
+                                        <div class="card-content">
+                                            <input class="card-title grey-text text-darken-4" value="My Project" />
+                                        </div>
+                                        <div class="card-action">
+                                            <div class="flexcontainer">
+                                                <a class="project-icon" href="#"><i class="material-icons">edit</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">share</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">file_download</i></a>
+                                                <a class="project-icon" href="#"><i class="material-icons">merge_type</i></a>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="publisher" class="modal">
+                <a class="modal-close close-button"><i class="material-icons">close</i></a>
+                <div class="modal-content">
+                    <h4>Publish Project</h4>
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="col s6">
+                                <div class="row">
+                                    <div class="input-field">
+                                        <input id="publish-title" type="text" class="validate" data-length="50">
+                                        <label for="publish-title">Project Title</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field">
+                                        <div class="chips chips-autocomplete" id="tagsadd"></div>
+                                        <label for="publish-tags">Tags (max 5)</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s6">
+                                <img class="col s12 project-image" id="publish-image" src="images/planetgraphic.png">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="publish-description" class="materialize-textarea" data-length="1000"></textarea>
+                                <label for="publish-description">Description</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+                    <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+                </div>
+            </div>
         </div>
 
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <script type="text/javascript">
+            function toggleAdvanced(id){
+                var d = document.getElementById(id).className;
+                if (d=="shareurl-advanced open"){
+                    document.getElementById(id).className = "shareurl-advanced";
+                } else {
+                    document.getElementById(id).className = "shareurl-advanced open";
+                }
+            }
             $(document).ready(function() {
                 var tags = {
                     'Music': 123,

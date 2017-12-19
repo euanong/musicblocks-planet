@@ -27,3 +27,39 @@
 	padding-top: 15px;
 	padding-right: 15px;
 }
+.share-card{
+	position:  absolute;
+    z-index:  100;
+    left:  70%;
+    transform: translateX(-50%);
+    min-width: 350px;
+}
+.shareurltext{
+	padding-bottom: 0px !important;
+}
+.shareurltitle{
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+.shareurlinput{
+	margin-top: 5px;
+	width: 350px;
+	text-align: left;
+	visibility: visible;
+}
+.shareurl-advanced {
+	display: none;
+    padding-bottom: 20px;
+}
+.shareurl-advanced.open {
+	display: block;
+}
+.shareurl-advanced-title{
+	font-size: 1.2rem;
+	font-weight: 500;
+	margin-bottom: 10px;
+}
+.input-field .search input[type=text]:focus {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+}
