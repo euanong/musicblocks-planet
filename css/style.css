@@ -3,6 +3,8 @@
 }
 
 #localglobal{
+	width: -webkit-max-content !important;
+	width: -moz-max-content !important;
 	width: max-content !important;
 }
 
@@ -17,8 +19,12 @@
 	margin-right: 3px !important;
 }
 .flexcontainer{
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: space-between;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
 }
 .close-button{
 	position:absolute;
