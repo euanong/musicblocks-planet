@@ -21,10 +21,10 @@
                     <li class="tab"><a href="#global" onclick="toggleSearch(true);">Global</a></li>
                 </ul>
             </div>
-            <div class="nav-content">
+            <div class="nav-content" id="searchcontainer" style="display: none;">
                 <div class="container">
                     <div class="input-field search">
-                        <input placeholder="Placeholder" id="global-search" type="text">
+                        <input placeholder="Search" id="global-search" type="text">
                     </div>
                 </div>
             </div>
@@ -457,6 +457,13 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <script type="text/javascript">
+            function toggleSearch(on){
+                if (on){
+                    document.getElementById("searchcontainer").style.display = "block";
+                } else {
+                    document.getElementById("searchcontainer").style.display = "none";
+                }
+            }
             function toggleAdvanced(id){
                 var d = document.getElementById(id).className;
                 if (d=="shareurl-advanced open"){
