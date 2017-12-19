@@ -6,6 +6,10 @@
 	width: max-content !important;
 }
 
+#tagsadd{
+	padding-top: 10px;
+}
+
 .project-image{
 	background-color: #96D3F3;
 }
@@ -15,4 +19,11 @@
 .flexcontainer{
 	display: flex;
 	justify-content: space-between;
+}
+.close-button{
+	position:absolute;
+	top:0;
+	right:0;
+	padding-top: 15px;
+	padding-right: 15px;
 }
