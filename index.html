@@ -45,16 +45,17 @@
                                     <div class="card">
                                         <div class="card-image">
                                             <img class="project-image" src="images/planetgraphic.png">
-                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger" href="#publisher"><i class="material-icons">cloud_upload</i></a>
+                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Publish Project" href="#publisher"><i class="material-icons">cloud_upload</i></a>
                                         </div>
                                         <div class="card-content">
                                             <input class="card-title grey-text text-darken-4" value="My Project" />
                                         </div>
                                         <div class="card-action">
                                             <div class="flexcontainer">
-                                                <a class="project-icon" href="#"><i class="material-icons">edit</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit Project" href="#"><i class="material-icons">edit</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete Project" href="#"><i class="material-icons">delete</i></a>
                                                 <div>
-                                                    <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
+                                                    <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Share Project" href="#"><i class="material-icons">share</i></a>
                                                     <div class="card share-card">
                                                         <div class="card-content shareurltext">
                                                             <div class="shareurltitle">Share</div>
@@ -71,9 +72,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <a class="project-icon" href="#"><i class="material-icons">share</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">file_download</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">merge_type</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Download Project as .tb" href="#"><i class="material-icons">file_download</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Merge with Current Project" href="#"><i class="material-icons">merge_type</i></a>
                                             </div>
                                         </div>
                                     </div> 
@@ -82,18 +82,35 @@
                                     <div class="card">
                                         <div class="card-image">
                                             <img class="project-image" src="images/planetgraphic.png">
-                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger" href="#publisher"><i class="material-icons">cloud_upload</i></a>
+                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Publish Project" href="#publisher"><i class="material-icons">cloud_upload</i></a>
                                         </div>
                                         <div class="card-content">
                                             <input class="card-title grey-text text-darken-4" value="My Project" />
                                         </div>
                                         <div class="card-action">
                                             <div class="flexcontainer">
-                                                <a class="project-icon" href="#"><i class="material-icons">edit</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">share</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">file_download</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">merge_type</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit Project" href="#"><i class="material-icons">edit</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete Project" href="#"><i class="material-icons">delete</i></a>
+                                                <div>
+                                                    <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Share Project" href="#"><i class="material-icons">share</i></a>
+                                                    <div class="card share-card" style="display: none">
+                                                        <div class="card-content shareurltext">
+                                                            <div class="shareurltitle">Share</div>
+                                                            <input type="text" name="shareurl" class="shareurlinput" value="https://walterbender.github.io/musicblocks/index.html?file=MusicBlocks_My_Project.tb">
+                                                            <div class="shareurl-advanced" id="s1">
+                                                                <div class="shareurltitle">Flags</div>
+                                                                <div><input type="checkbox" name="run" id="checkbox1run"><label for="checkbox1run">Run project on startup.</label></div>
+                                                                <div><input type="checkbox" name="show" id="checkbox1show"><label for="checkbox1show">Show code blocks on startup.</label></div>
+                                                                <div><input type="checkbox" name="collapse" id="checkbox1collapse"><label for="checkbox1collapse">Collapse code blocks on startup.</label></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-action">
+                                                            <a href="#" onclick="toggleExpandable('s1','shareurl-advanced');">Advanced Options</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Download Project as .tb" href="#"><i class="material-icons">file_download</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Merge with Current Project" href="#"><i class="material-icons">merge_type</i></a>
                                             </div>
                                         </div>
                                     </div> 
@@ -102,18 +119,35 @@
                                     <div class="card">
                                         <div class="card-image">
                                             <img class="project-image" src="images/planetgraphic.png">
-                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger" href="#publisher"><i class="material-icons">cloud_upload</i></a>
+                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Publish Project" href="#publisher"><i class="material-icons">cloud_upload</i></a>
                                         </div>
                                         <div class="card-content">
                                             <input class="card-title grey-text text-darken-4" value="My Project" />
                                         </div>
                                         <div class="card-action">
                                             <div class="flexcontainer">
-                                                <a class="project-icon" href="#"><i class="material-icons">edit</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">share</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">file_download</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">merge_type</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit Project" href="#"><i class="material-icons">edit</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete Project" href="#"><i class="material-icons">delete</i></a>
+                                                <div>
+                                                    <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Share Project" href="#"><i class="material-icons">share</i></a>
+                                                    <div class="card share-card" style="display: none">
+                                                        <div class="card-content shareurltext">
+                                                            <div class="shareurltitle">Share</div>
+                                                            <input type="text" name="shareurl" class="shareurlinput" value="https://walterbender.github.io/musicblocks/index.html?file=MusicBlocks_My_Project.tb">
+                                                            <div class="shareurl-advanced" id="s1">
+                                                                <div class="shareurltitle">Flags</div>
+                                                                <div><input type="checkbox" name="run" id="checkbox1run"><label for="checkbox1run">Run project on startup.</label></div>
+                                                                <div><input type="checkbox" name="show" id="checkbox1show"><label for="checkbox1show">Show code blocks on startup.</label></div>
+                                                                <div><input type="checkbox" name="collapse" id="checkbox1collapse"><label for="checkbox1collapse">Collapse code blocks on startup.</label></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-action">
+                                                            <a href="#" onclick="toggleExpandable('s1','shareurl-advanced');">Advanced Options</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Download Project as .tb" href="#"><i class="material-icons">file_download</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Merge with Current Project" href="#"><i class="material-icons">merge_type</i></a>
                                             </div>
                                         </div>
                                     </div> 
@@ -122,18 +156,35 @@
                                     <div class="card">
                                         <div class="card-image">
                                             <img class="project-image" src="images/planetgraphic.png">
-                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger" href="#publisher"><i class="material-icons">cloud_upload</i></a>
+                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Publish Project" href="#publisher"><i class="material-icons">cloud_upload</i></a>
                                         </div>
                                         <div class="card-content">
                                             <input class="card-title grey-text text-darken-4" value="My Project" />
                                         </div>
                                         <div class="card-action">
                                             <div class="flexcontainer">
-                                                <a class="project-icon" href="#"><i class="material-icons">edit</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">share</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">file_download</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">merge_type</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit Project" href="#"><i class="material-icons">edit</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete Project" href="#"><i class="material-icons">delete</i></a>
+                                                <div>
+                                                    <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Share Project" href="#"><i class="material-icons">share</i></a>
+                                                    <div class="card share-card" style="display: none">
+                                                        <div class="card-content shareurltext">
+                                                            <div class="shareurltitle">Share</div>
+                                                            <input type="text" name="shareurl" class="shareurlinput" value="https://walterbender.github.io/musicblocks/index.html?file=MusicBlocks_My_Project.tb">
+                                                            <div class="shareurl-advanced" id="s1">
+                                                                <div class="shareurltitle">Flags</div>
+                                                                <div><input type="checkbox" name="run" id="checkbox1run"><label for="checkbox1run">Run project on startup.</label></div>
+                                                                <div><input type="checkbox" name="show" id="checkbox1show"><label for="checkbox1show">Show code blocks on startup.</label></div>
+                                                                <div><input type="checkbox" name="collapse" id="checkbox1collapse"><label for="checkbox1collapse">Collapse code blocks on startup.</label></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-action">
+                                                            <a href="#" onclick="toggleExpandable('s1','shareurl-advanced');">Advanced Options</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Download Project as .tb" href="#"><i class="material-icons">file_download</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Merge with Current Project" href="#"><i class="material-icons">merge_type</i></a>
                                             </div>
                                         </div>
                                     </div> 
@@ -142,18 +193,35 @@
                                     <div class="card">
                                         <div class="card-image">
                                             <img class="project-image" src="images/planetgraphic.png">
-                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger" href="#publisher"><i class="material-icons">cloud_upload</i></a>
+                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Publish Project" href="#publisher"><i class="material-icons">cloud_upload</i></a>
                                         </div>
                                         <div class="card-content">
                                             <input class="card-title grey-text text-darken-4" value="My Project" />
                                         </div>
                                         <div class="card-action">
                                             <div class="flexcontainer">
-                                                <a class="project-icon" href="#"><i class="material-icons">edit</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">share</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">file_download</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">merge_type</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit Project" href="#"><i class="material-icons">edit</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete Project" href="#"><i class="material-icons">delete</i></a>
+                                                <div>
+                                                    <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Share Project" href="#"><i class="material-icons">share</i></a>
+                                                    <div class="card share-card" style="display: none">
+                                                        <div class="card-content shareurltext">
+                                                            <div class="shareurltitle">Share</div>
+                                                            <input type="text" name="shareurl" class="shareurlinput" value="https://walterbender.github.io/musicblocks/index.html?file=MusicBlocks_My_Project.tb">
+                                                            <div class="shareurl-advanced" id="s1">
+                                                                <div class="shareurltitle">Flags</div>
+                                                                <div><input type="checkbox" name="run" id="checkbox1run"><label for="checkbox1run">Run project on startup.</label></div>
+                                                                <div><input type="checkbox" name="show" id="checkbox1show"><label for="checkbox1show">Show code blocks on startup.</label></div>
+                                                                <div><input type="checkbox" name="collapse" id="checkbox1collapse"><label for="checkbox1collapse">Collapse code blocks on startup.</label></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-action">
+                                                            <a href="#" onclick="toggleExpandable('s1','shareurl-advanced');">Advanced Options</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Download Project as .tb" href="#"><i class="material-icons">file_download</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Merge with Current Project" href="#"><i class="material-icons">merge_type</i></a>
                                             </div>
                                         </div>
                                     </div> 
@@ -162,18 +230,35 @@
                                     <div class="card">
                                         <div class="card-image">
                                             <img class="project-image" src="images/planetgraphic.png">
-                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger" href="#publisher"><i class="material-icons">cloud_upload</i></a>
+                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Publish Project" href="#publisher"><i class="material-icons">cloud_upload</i></a>
                                         </div>
                                         <div class="card-content">
                                             <input class="card-title grey-text text-darken-4" value="My Project" />
                                         </div>
                                         <div class="card-action">
                                             <div class="flexcontainer">
-                                                <a class="project-icon" href="#"><i class="material-icons">edit</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">share</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">file_download</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">merge_type</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit Project" href="#"><i class="material-icons">edit</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete Project" href="#"><i class="material-icons">delete</i></a>
+                                                <div>
+                                                    <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Share Project" href="#"><i class="material-icons">share</i></a>
+                                                    <div class="card share-card" style="display: none">
+                                                        <div class="card-content shareurltext">
+                                                            <div class="shareurltitle">Share</div>
+                                                            <input type="text" name="shareurl" class="shareurlinput" value="https://walterbender.github.io/musicblocks/index.html?file=MusicBlocks_My_Project.tb">
+                                                            <div class="shareurl-advanced" id="s1">
+                                                                <div class="shareurltitle">Flags</div>
+                                                                <div><input type="checkbox" name="run" id="checkbox1run"><label for="checkbox1run">Run project on startup.</label></div>
+                                                                <div><input type="checkbox" name="show" id="checkbox1show"><label for="checkbox1show">Show code blocks on startup.</label></div>
+                                                                <div><input type="checkbox" name="collapse" id="checkbox1collapse"><label for="checkbox1collapse">Collapse code blocks on startup.</label></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-action">
+                                                            <a href="#" onclick="toggleExpandable('s1','shareurl-advanced');">Advanced Options</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Download Project as .tb" href="#"><i class="material-icons">file_download</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Merge with Current Project" href="#"><i class="material-icons">merge_type</i></a>
                                             </div>
                                         </div>
                                     </div> 
@@ -182,18 +267,35 @@
                                     <div class="card">
                                         <div class="card-image">
                                             <img class="project-image" src="images/planetgraphic.png">
-                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger" href="#publisher"><i class="material-icons">cloud_upload</i></a>
+                                            <a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Publish Project" href="#publisher"><i class="material-icons">cloud_upload</i></a>
                                         </div>
                                         <div class="card-content">
                                             <input class="card-title grey-text text-darken-4" value="My Project" />
                                         </div>
                                         <div class="card-action">
                                             <div class="flexcontainer">
-                                                <a class="project-icon" href="#"><i class="material-icons">edit</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">delete</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">share</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">file_download</i></a>
-                                                <a class="project-icon" href="#"><i class="material-icons">merge_type</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit Project" href="#"><i class="material-icons">edit</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete Project" href="#"><i class="material-icons">delete</i></a>
+                                                <div>
+                                                    <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Share Project" href="#"><i class="material-icons">share</i></a>
+                                                    <div class="card share-card" style="display: none">
+                                                        <div class="card-content shareurltext">
+                                                            <div class="shareurltitle">Share</div>
+                                                            <input type="text" name="shareurl" class="shareurlinput" value="https://walterbender.github.io/musicblocks/index.html?file=MusicBlocks_My_Project.tb">
+                                                            <div class="shareurl-advanced" id="s1">
+                                                                <div class="shareurltitle">Flags</div>
+                                                                <div><input type="checkbox" name="run" id="checkbox1run"><label for="checkbox1run">Run project on startup.</label></div>
+                                                                <div><input type="checkbox" name="show" id="checkbox1show"><label for="checkbox1show">Show code blocks on startup.</label></div>
+                                                                <div><input type="checkbox" name="collapse" id="checkbox1collapse"><label for="checkbox1collapse">Collapse code blocks on startup.</label></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-action">
+                                                            <a href="#" onclick="toggleExpandable('s1','shareurl-advanced');">Advanced Options</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Download Project as .tb" href="#"><i class="material-icons">file_download</i></a>
+                                                <a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Merge with Current Project" href="#"><i class="material-icons">merge_type</i></a>
                                             </div>
                                         </div>
                                     </div> 
