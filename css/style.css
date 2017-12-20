@@ -39,6 +39,7 @@
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
+	flex-wrap: wrap;
 	-webkit-box-pack: justify;
 	    -ms-flex-pack: justify;
 	        justify-content: center;
@@ -82,6 +83,7 @@
 }
 #morechips.open {
 	display: flex;
+	flex-wrap: wrap;
 }
 .shareurl-advanced-title{
 	font-size: 1.2rem;
@@ -173,4 +175,10 @@
 }
 #localglobal{
 	top: 7px;
+}
+@media only screen and (max-width: 500px)  {
+	#logo-container {
+		left: initial !important;
+		transform: initial !important;
+	}
 }
