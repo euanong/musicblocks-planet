@@ -21,11 +21,19 @@
 	margin-right: 3px !important;
 }
 .projectscontainer{
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
     margin: 0 auto;
-    justify-content: left;
+    -webkit-box-pack: left;
+        -ms-flex-pack: left;
+            justify-content: left;
 }
 .flexcontainer{
 	display: -webkit-box;
@@ -39,7 +47,8 @@
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
 	-webkit-box-pack: justify;
 	    -ms-flex-pack: justify;
 	        justify-content: center;
@@ -55,7 +64,9 @@
 	position:  absolute;
     z-index:  100;
     left:  70%;
-    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
     min-width: 350px;
 }
 .shareurltext{
@@ -82,8 +93,11 @@
 	display: none;
 }
 #morechips.open {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
 }
 .shareurl-advanced-title{
 	font-size: 1.2rem;
@@ -101,7 +115,8 @@
 /* label underline focus color */
 .search input[type=text]:focus {
 	border-bottom: 1px solid #fff !important;
-	box-shadow: 0 1px 0 0 #fff !important;
+	-webkit-box-shadow: 0 1px 0 0 #fff !important;
+	        box-shadow: 0 1px 0 0 #fff !important;
 }
 /* icon prefix focus color */
 #global-search .prefix.active {
@@ -148,13 +163,16 @@
 }
 .centre-button{
 	left: 50%;
-    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
     margin-top: 10px;
 }
 .global-title {
 	white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
 }
 .subheading {
 	font-weight: 300;
@@ -179,6 +197,8 @@
 @media only screen and (max-width: 500px)  {
 	#logo-container {
 		left: initial !important;
-		transform: initial !important;
+		-webkit-transform: initial !important;
+		    -ms-transform: initial !important;
+		        transform: initial !important;
 	}
 }
