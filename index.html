@@ -19,6 +19,7 @@
         <script type="text/javascript" src="js/ProjectStorage.js"></script>
         <script type="text/javascript" src="js/ServerInterface.js"></script>
         <script type="text/javascript" src="js/LocalCard.js"></script>
+        <script type="text/javascript" src="js/Publisher.js"></script>
         <script type="text/javascript" src="js/LocalPlanet.js"></script>
         <script type="text/javascript" src="js/Planet.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
@@ -61,10 +62,11 @@
             <div id="publisher" class="modal">
                 <div class="modal-content" id="publisher-content">
                     <a class="modal-close close-button"><i class="material-icons">close</i></a>
-                    <h4>Publish Project</h4>
+                    <h4 id="publisher-ptitle">Publish Project</h4>
                     <div class="progress" id="publisher-progress" style="visibility: hidden;">
                         <div class="indeterminate"></div>
                     </div>
+                    <div class="error-message" id="publisher-error" style="display: none;"></div>
                     <form class="col no-margin-left s12" id="publisher-form">
                         <input type="hidden" id="publish-id" name="ProjectID">
                         <div class="row">
@@ -72,7 +74,7 @@
                                 <div class="row">
                                     <div class="input-field">
                                         <input id="publish-title" type="text" class="validate" data-length="50" required>
-                                        <label for="publish-title">Project title</label>
+                                        <label for="publish-title" id="publish-title-label">Project title</label>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -88,8 +90,8 @@
                         </div>
                         <div class="row">
                             <div class="input-field col no-margin-left s12">
-                                <textarea id="publish-description" class="materialize-textarea" data-length="1000" required></textarea>
-                                <label for="publish-description">Description</label>
+                                <textarea id="publish-description" class="materialize-textarea validate" data-length="1000" required></textarea>
+                                <label for="publish-description" id="publish-description-label">Description</label>
                             </div>
                         </div>
                     </form>

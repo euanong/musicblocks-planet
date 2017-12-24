@@ -42,6 +42,11 @@ function ProjectStorage(Planet){
 		this.save();
 	}
 
+	this.addPublishedData = function(id, data){
+		this.data.Projects[id].PublishedData = data;
+		this.save();
+	}
+
 	this.deleteProject = function(id){
 		delete this.data.Projects[id];
 		this.save();
@@ -85,6 +90,10 @@ function ProjectStorage(Planet){
 		this.data.Projects = {};
 		this.data.DefaultCreatorName = "anonymous";
 		this.save();
+	}
+
+	this.getDefaultCreatorName = function(){
+		return this.data.DefaultCreatorName;
 	}
 
 	this.init = function(){

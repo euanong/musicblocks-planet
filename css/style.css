@@ -64,7 +64,7 @@
 .share-card{
 	position:  absolute;
     z-index:  100;
-    left:  70%;
+    left:  50%;
     -webkit-transform: translateX(-50%);
         -ms-transform: translateX(-50%);
             transform: translateX(-50%);
@@ -205,4 +205,15 @@
 }
 a {
 	cursor: pointer;
+}
+.error-message{
+	margin-bottom: 10px;
+    color: #f44337;
+}
+.published-cloud{
+	position: absolute;
+    z-index: 1000;
+    margin-left: 15px;
+    margin-top: 15px;
+    color: #fff;
 }

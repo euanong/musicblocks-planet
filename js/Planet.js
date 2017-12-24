@@ -1,10 +1,11 @@
-function Planet(){
+function Planet(isMusicBlocks){
 	this.LocalPlanet = null;
 	this.ProjectStorage = null;
 	this.ServerInterface = null;
 	this.LocalStorage = window.localStorage;
 	this.ConnectedToServer = null;
 	this.TagsManifest = null;
+	this.IsMusicBlocks = isMusicBlocks;
 
 	this.open = function(){
 		this.LocalPlanet.updateProjects();

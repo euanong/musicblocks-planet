@@ -5,6 +5,7 @@ function LocalCard(Planet){
 	this.renderData = '\
 <div class="col no-margin-left s12 m6 l4"> \
 	<div class="card"> \
+		<a class="published-cloud tooltipped" data-position="top" data-delay="50" data-tooltip="View published project" style="display:none;" id="local-project-cloud-{ID}"><i class="material-icons small">cloud_done</i></a>\
 		<div class="card-image"> \
 			<img class="project-image" id="local-project-image-{ID}"> \
 			<a class="btn-floating halfway-fab waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="Publish project" id="local-project-publish-{ID}"><i class="material-icons">cloud_upload</i></a> \
@@ -16,21 +17,21 @@ function LocalCard(Planet){
 			<div class="flexcontainer"> \
 				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit project" href="#"><i class="material-icons">edit</i></a> \
 				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete project" id="local-project-delete-{ID}"><i class="material-icons">delete</i></a> \
-				<div> \
-					<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Share project" href="#"><i class="material-icons">share</i></a> \
-					<div class="card share-card" style="display:none;"> \
+				<div id="share-{ID}"> \
+					<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Share project" id="local-project-share-{ID}"><i class="material-icons">share</i></a> \
+					<div class="card share-card" id="sharebox-{ID}" style="display:none;"> \
 						<div class="card-content shareurltext"> \
 							<div class="shareurltitle">Share</div> \
-							<input type="text" name="shareurl" class="shareurlinput" value="https://walterbender.github.io/musicblocks/index.html?file=MusicBlocks_My_Project.tb"> \
-							<div class="shareurl-advanced" id="s1"> \
+							<input type="text" name="shareurl" class="shareurlinput" value="https://walterbender.github.io/musicblocks/index.html?id={ID}"> \
+							<div class="shareurl-advanced" id="advanced-{ID}"> \
 								<div class="shareurltitle">Flags</div> \
-								<div><input type="checkbox" name="run" id="checkbox1run"><label for="checkbox1run">Run project on startup.</label></div> \
-								<div><input type="checkbox" name="show" id="checkbox1show"><label for="checkbox1show">Show code blocks on startup.</label></div> \
-								<div><input type="checkbox" name="collapse" id="checkbox1collapse"><label for="checkbox1collapse">Collapse code blocks on startup.</label></div> \
+								<div><input type="checkbox" name="run" id="checkboxrun-{ID}"><label for="checkboxrun-{ID}">Run project on startup.</label></div> \
+								<div><input type="checkbox" name="show" id="checkboxshow-{ID}"><label for="checkboxshow-{ID}">Show code blocks on startup.</label></div> \
+								<div><input type="checkbox" name="collapse" id="checkboxcollapse-{ID}"><label for="checkboxcollapse-{ID}">Collapse code blocks on startup.</label></div> \
 							</div> \
 						</div> \
 						<div class="card-action"> \
-							<a onclick="toggleExpandable(\'s1\',\'shareurl-advanced\');">Advanced Options</a> \
+							<a onclick="toggleExpandable(\'advanced-{ID}\',\'shareurl-advanced\');">Advanced Options</a> \
 						</div> \
 					</div> \
 				</div> \
@@ -68,13 +69,37 @@ function LocalCard(Planet){
 			Planet.LocalPlanet.openDeleteModal(t.id);
 		});
 		
-		//set delete button listener
+		//set publish button listener
 		var t = this;
 		frag.getElementById("local-project-publish-"+this.id).addEventListener('click', function (evt) {
-			Planet.LocalPlanet.openPublishModal(t.id);
+			Planet.LocalPlanet.Publisher.open(t.id);
 		});
 
+		//set share button listener
+		var t = this;
+		frag.getElementById("local-project-share-"+this.id).addEventListener('click', function (evt) {
+			var s = document.getElementById("sharebox-"+t.id);
+			if (s.style.display=="none"){
+				s.style.display = "initial";
+				hideOnClickOutside(document.getElementById("share-"+t.id), "sharebox-"+t.id);
+			} else {
+				s.style.display = "none";
+			}
+		});
+
+		//set published cloud listener
+		if (this.ProjectData.PublishedData!=null){
+			var t = this;
+			frag.getElementById("local-project-cloud-"+this.id).style.display = "initial";
+			frag.getElementById("local-project-cloud-"+this.id).addEventListener('click', function (evt) {
+				//TODO: Implement view-published-project thing
+				console.log("open id "+t.id+" in global planet");
+			});
+		}
+
 		document.getElementById("local-projects").appendChild(frag);
+
+		$('.tooltipped').tooltip({delay: 50});
 	}
 
 	this.init = function(id){

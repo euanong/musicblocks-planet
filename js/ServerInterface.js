@@ -15,17 +15,13 @@ function ServerInterface(Planet){
 		.fail(function(){callback(t.ConnectionFailureData)});
 	}
 
-	this.checkIfPublished = function(ProjectIDs, callback){
-		var arr = [];
-		for (var i = 0; i<ProjectIDs.length; i++){
-			arr.push(parseInt(ProjectIDs[i]));
-		}
-		var obj = {"action":"checkIfPublished","ProjectIDs":JSON.stringify(arr)};
+	this.getTagManifest = function(callback){
+		var obj = {"action":"getTagManifest"};
 		this.request(obj,callback);
 	}
 
-	this.getTagManifest = function(callback){
-		var obj = {"action":"getTagManifest"};
+	this.addProject = function(data,callback){
+		var obj = {"action":"addProject","ProjectJSON":data};
 		this.request(obj,callback);
 	}
 
