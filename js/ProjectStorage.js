@@ -1,5 +1,5 @@
 function ProjectStorage(Planet){
-	this.defaultProjectName = "My Project";
+	this.defaultProjectName = _("My Project");
 	this.LocalStorage = null;
 	this.data = null;
 	this.LocalStorageKey = "ProjectData";

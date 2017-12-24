@@ -1,6 +1,6 @@
 function Publisher(Planet){
 	this.ChipTags = null;
-	this.PublisherOfflineHTML = '<div>Feature unavailable - cannot connect to server. Reload Music Blocks to try again.</div>';
+	this.PublisherOfflineHTML = '<div>'+_('Feature unavailable - cannot connect to server. Reload Music Blocks to try again.')+'</div>';
 	this.TitleLowerBound = 1;
 	this.TitleUpperBound = 50;
 	this.DescriptionLowerBound = 1;
@@ -99,11 +99,11 @@ function Publisher(Planet){
 		if (published!=null){
 			var description = published.ProjectDescription;
 			var tags = published.ProjectTags;
-			document.getElementById("publisher-ptitle").textContent="Republish Project";
+			document.getElementById("publisher-ptitle").textContent=_("Republish Project");
 		} else {
 			var description = "";
 			var tags = [];
-			document.getElementById("publisher-ptitle").textContent="Publish Project";
+			document.getElementById("publisher-ptitle").textContent=_("Publish Project");
 		}
 		if (Planet.ConnectedToServer){
 			document.getElementById("publish-description").value = description;
@@ -130,13 +130,13 @@ function Publisher(Planet){
 		var titlelabel = document.getElementById("publish-title-label");
 		if (title.value.length<this.TitleLowerBound){
 			errors = true;
-			titlelabel.setAttribute("data-error","This field is required");
+			titlelabel.setAttribute("data-error",_("This field is required"));
 			title.classList.add("invalid");
 			titlelabel.classList.add("active");
 		}
 		if (title.value.length>this.TitleUpperBound){
 			errors = true;
-			titlelabel.setAttribute("data-error","Title too long");
+			titlelabel.setAttribute("data-error",_("Title too long"));
 			title.classList.add("invalid");
 			titlelabel.classList.add("active");
 		}
@@ -144,13 +144,13 @@ function Publisher(Planet){
 		var descriptionlabel = document.getElementById("publish-description-label");
 		if (description.value.length<this.DescriptionLowerBound){
 			errors = true;
-			descriptionlabel.setAttribute("data-error","This field is required");
+			descriptionlabel.setAttribute("data-error",_("This field is required"));
 			description.classList.add("invalid");
 			descriptionlabel.classList.add("active");
 		}
 		if (description.value.length>this.DescriptionUpperBound){
 			errors = true;
-			descriptionlabel.setAttribute("data-error","Description too long");
+			descriptionlabel.setAttribute("data-error",_("Description too long"));
 			description.classList.add("invalid");
 			descriptionlabel.classList.add("active");
 		}
@@ -220,7 +220,7 @@ function Publisher(Planet){
 				document.getElementById("sharebox-"+id).style.display = "initial";
 			}
 		} else {
-			this.throwError("Server Error ("+data.error+") - Try Again");
+			this.throwError(_("Server Error")+" ("+data.error+") - "+_("Try Again"));
 			this.hideProgressBar();
 		}
 	}

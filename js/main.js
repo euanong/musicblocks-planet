@@ -9,6 +9,10 @@ function openProject(data,image){
 	p.open();
 }
 
+function _(text){
+	return text;
+}
+
 $(document).ready(function(){
 	p = new Planet(true);
 	p.init(function(){p.open();});

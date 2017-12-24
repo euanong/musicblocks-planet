@@ -3,43 +3,43 @@ function LocalCard(Planet){
 	this.id = null;
 	this.ProjectData = null;
 	this.DownloadExtension = "tb";
-	this.CopySuffix = "(Copy)";
+	this.CopySuffix = "("+_("Copy")+")";
 	this.renderData = '\
 <div class="col no-margin-left s12 m6 l4"> \
 	<div class="card"> \
-		<a class="published-cloud tooltipped" data-position="top" data-delay="50" data-tooltip="View published project" style="display:none;" id="local-project-cloud-{ID}"><i class="material-icons small">cloud_done</i></a>\
+		<a class="published-cloud tooltipped" data-position="top" data-delay="50" data-tooltip="'+_('View published project')+'" style="display:none;" id="local-project-cloud-{ID}"><i class="material-icons small">cloud_done</i></a>\
 		<div class="card-image"> \
 			<img class="project-image" id="local-project-image-{ID}"> \
-			<a class="btn-floating halfway-fab waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="Publish project" id="local-project-publish-{ID}"><i class="material-icons">cloud_upload</i></a> \
+			<a class="btn-floating halfway-fab waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="'+_('Publish project')+'" id="local-project-publish-{ID}"><i class="material-icons">cloud_upload</i></a> \
 		</div> \
 		<div class="card-content"> \
 			<input class="card-title grey-text text-darken-4" id="local-project-input-{ID}" /> \
 		</div> \
 		<div class="card-action"> \
 			<div class="flexcontainer"> \
-				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit project" href="#"><i class="material-icons">edit</i></a> \
-				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete project" id="local-project-delete-{ID}"><i class="material-icons">delete</i></a> \
+				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+_('Edit project')+'" href="#"><i class="material-icons">edit</i></a> \
+				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+_('Delete project')+'" id="local-project-delete-{ID}"><i class="material-icons">delete</i></a> \
 				<div id="share-{ID}"> \
-					<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Share project" id="local-project-share-{ID}"><i class="material-icons">share</i></a> \
+					<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+_('Share project')+'" id="local-project-share-{ID}"><i class="material-icons">share</i></a> \
 					<div class="card share-card" id="sharebox-{ID}" style="display:none;"> \
 						<div class="card-content shareurltext"> \
-							<div class="shareurltitle">Share</div> \
+							<div class="shareurltitle">'+_('Share')+'</div> \
 							<input type="text" name="shareurl" class="shareurlinput" data-originalurl="https://walterbender.github.io/musicblocks/index.html?id={ID}"> \
 							<div class="shareurl-advanced" id="advanced-{ID}"> \
-								<div class="shareurltitle">Flags</div> \
-								<div><input type="checkbox" name="run" id="checkboxrun-{ID}" checked><label for="checkboxrun-{ID}">Run project on startup.</label></div> \
-								<div><input type="checkbox" name="show" id="checkboxshow-{ID}"><label for="checkboxshow-{ID}">Show code blocks on startup.</label></div> \
-								<div><input type="checkbox" name="collapse" id="checkboxcollapse-{ID}"><label for="checkboxcollapse-{ID}">Collapse code blocks on startup.</label></div> \
+								<div class="shareurltitle">'+_('Flags')+'</div> \
+								<div><input type="checkbox" name="run" id="checkboxrun-{ID}" checked><label for="checkboxrun-{ID}">'+_('Run project on startup.')+'</label></div> \
+								<div><input type="checkbox" name="show" id="checkboxshow-{ID}"><label for="checkboxshow-{ID}">'+_('Show code blocks on startup.')+'</label></div> \
+								<div><input type="checkbox" name="collapse" id="checkboxcollapse-{ID}"><label for="checkboxcollapse-{ID}">'+_('Collapse code blocks on startup.')+'</label></div> \
 							</div> \
 						</div> \
 						<div class="card-action"> \
-							<a onclick="toggleExpandable(\'advanced-{ID}\',\'shareurl-advanced\');">Advanced Options</a> \
+							<a onclick="toggleExpandable(\'advanced-{ID}\',\'shareurl-advanced\');">'+_('Advanced Options')+'</a> \
 						</div> \
 					</div> \
 				</div> \
-				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Download project" id="local-project-download-{ID}"><i class="material-icons">file_download</i></a> \
-				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Merge with current project" href="#"><i class="material-icons">merge_type</i></a> \
-				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Duplicate project" id="local-project-duplicate-{ID}"><i class="material-icons">content_copy</i></a> \
+				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+_('Download project')+'" id="local-project-download-{ID}"><i class="material-icons">file_download</i></a> \
+				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+_('Merge with current project')+'" href="#"><i class="material-icons">merge_type</i></a> \
+				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="'+_('Duplicate project')+'" id="local-project-duplicate-{ID}"><i class="material-icons">content_copy</i></a> \
 			</div> \
 		</div> \
 	</div>  \
