@@ -1,3 +1,14 @@
+// Copyright (c) 2017 Euan Ong
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the The GNU Affero General Public
+// License as published by the Free Software Foundation; either
+// version 3 of the License, or (at your option) any later version.
+//
+// You should have received a copy of the GNU Affero General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, 51 Franklin Street, Suite 500 Boston, MA 02110-1335 USA
+
 function Publisher(Planet){
 	this.ChipTags = null;
 	this.PublisherOfflineHTML = '<div>'+_('Feature unavailable - cannot connect to server. Reload Music Blocks to try again.')+'</div>';
@@ -16,7 +27,7 @@ function Publisher(Planet){
 			}
 		}
 		return null;
-	}
+	};
 
 	this.addTags = function(){
 		var tags = Planet.TagsManifest;
@@ -50,7 +61,7 @@ function Publisher(Planet){
 			t.setTagInput(arr);
 			$('#tagsadd :input').focus();
 		});
-	}
+	};
 
 	this.setTagInput = function(arr){
 		$('#tagsadd').material_chip({
@@ -61,7 +72,7 @@ function Publisher(Planet){
 				minLength: 1
 			}
 		});
-	}
+	};
 
 	this.setTags = function(arr){
 		var a = [];
@@ -72,7 +83,7 @@ function Publisher(Planet){
 			a.push(o);
 		}
 		this.setTagInput(a);
-	}
+	};
 
 	this.getTags = function(){
 		var t = $('#tagsadd').material_chip('data');
@@ -81,12 +92,12 @@ function Publisher(Planet){
 			a.push(t[i].id);
 		}
 		return a;
-	}
+	};
 
 	this.initSubmit = function(){
 		var t = this;
 		document.getElementById("publisher-submit").addEventListener('click', this.publishProject.bind(this));
-	}
+	};
 
 	this.open = function(id, IsShareLink){
 		if (IsShareLink===undefined){
@@ -118,7 +129,7 @@ function Publisher(Planet){
 			Materialize.updateTextFields();
 		}
 		$('#publisher').modal('open');
-	}
+	};
 
 	this.publishProject = function(){
 		document.getElementById("publisher-error").textContent = "";
@@ -178,7 +189,7 @@ function Publisher(Planet){
 			published.ProjectTags = this.getTags();
 			Planet.ServerInterface.addProject(send,function(data){this.afterPublishProject(data,id,title.value,published)}.bind(this));
 		}
-	}
+	};
 
 	this.parseProject = function(tb){
 		try {
@@ -203,11 +214,11 @@ function Publisher(Planet){
 			s+=item+" ";
 		}
 		return s.slice(0, -1);
-	}
+	};
 
 	this.hideProgressBar = function(){
 		document.getElementById("publisher-progress").style.visibility = "hidden";
-	}
+	};
 
 	this.afterPublishProject = function(data,id,name,published){
 		if (data.success){
@@ -223,16 +234,16 @@ function Publisher(Planet){
 			this.throwError(_("Server Error")+" ("+data.error+") - "+_("Try Again"));
 			this.hideProgressBar();
 		}
-	}
+	};
 
 	this.throwError = function(error){
 		document.getElementById("publisher-error").textContent = error;
 		document.getElementById("publisher-error").style.display = "initial";
-	}
+	};
 
 	this.close = function(){
 		$('#publisher').modal('close');
-	}
+	};
 
 	this.init = function(){
 		if (!Planet.ConnectedToServer){
@@ -246,5 +257,5 @@ function Publisher(Planet){
 			this.addTags();
 			this.initSubmit();
 		}
-	}
+	};
 }

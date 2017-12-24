@@ -1,3 +1,14 @@
+// Copyright (c) 2017 Euan Ong
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the The GNU Affero General Public
+// License as published by the Free Software Foundation; either
+// version 3 of the License, or (at your option) any later version.
+//
+// You should have received a copy of the GNU Affero General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, 51 Franklin Street, Suite 500 Boston, MA 02110-1335 USA
+
 function LocalCard(Planet){
 	this.placeholderImage = "images/planetgraphic.png";
 	this.id = null;
@@ -53,12 +64,12 @@ function LocalCard(Planet){
 		document.body.appendChild(element);
 		element.click();
 		document.body.removeChild(element);
-	}
+	};
 
 	this.duplicate = function(){
 		Planet.ProjectStorage.initialiseNewProject(this.ProjectData.ProjectName+" "+this.CopySuffix,this.ProjectData.ProjectData,this.ProjectData.ProjectImage);
 		Planet.LocalPlanet.updateProjects();
-	}
+	};
 
 	this.render = function(){
 		//TODO: Have a TB placeholder image specific to TB projects
@@ -140,10 +151,10 @@ function LocalCard(Planet){
 		document.getElementById("local-projects").appendChild(frag);
 		$('.tooltipped').tooltip({delay: 50});
 		updateCheckboxes("sharebox-"+t.id);
-	}
+	};
 
 	this.init = function(id){
 		this.id = id;
 		this.ProjectData = Planet.LocalPlanet.ProjectTable[this.id];
-	}
-}
+	};
+};
