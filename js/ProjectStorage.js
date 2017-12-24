@@ -25,15 +25,24 @@ function ProjectStorage(Planet){
 		this.save();
 	}
 
-	this.initialiseNewProject = function(){
+	this.initialiseNewProject = function(name,data,image){
+		if (name===undefined){
+			name=this.defaultProjectName;
+		}
+		if (data===undefined){
+			data=null;
+		}
+		if (image===undefined){
+			image=null;
+		}
 		var c = this.generateID();
 		this.data.CurrentProject = c;
 		this.data.Projects[c]={};
-		this.data.Projects[c].ProjectName = this.defaultProjectName;
-		this.data.Projects[c].ProjectData = null;
-		this.data.Projects[c].ProjectImage = null;
+		this.data.Projects[c].ProjectName = name;
+		this.data.Projects[c].ProjectData = data;
+		this.data.Projects[c].ProjectImage = image;
 		this.data.Projects[c].PublishedData = null;
-		this.data.Projects[c].DateLastModified = null;
+		this.data.Projects[c].DateLastModified = Date.now();
 		this.save();
 	}
 

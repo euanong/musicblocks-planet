@@ -3,6 +3,7 @@ function LocalCard(Planet){
 	this.id = null;
 	this.ProjectData = null;
 	this.DownloadExtension = "tb";
+	this.CopySuffix = "(Copy)";
 	this.renderData = '\
 <div class="col no-margin-left s12 m6 l4"> \
 	<div class="card"> \
@@ -38,6 +39,7 @@ function LocalCard(Planet){
 				</div> \
 				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Download project" id="local-project-download-{ID}"><i class="material-icons">file_download</i></a> \
 				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Merge with current project" href="#"><i class="material-icons">merge_type</i></a> \
+				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Duplicate project" id="local-project-duplicate-{ID}"><i class="material-icons">content_copy</i></a> \
 			</div> \
 		</div> \
 	</div>  \
@@ -51,6 +53,11 @@ function LocalCard(Planet){
 		document.body.appendChild(element);
 		element.click();
 		document.body.removeChild(element);
+	}
+
+	this.duplicate = function(){
+		Planet.ProjectStorage.initialiseNewProject(this.ProjectData.ProjectName+" "+this.CopySuffix,this.ProjectData.ProjectData,this.ProjectData.ProjectImage);
+		Planet.LocalPlanet.updateProjects();
 	}
 
 	this.render = function(){
@@ -85,9 +92,14 @@ function LocalCard(Planet){
 			Planet.LocalPlanet.Publisher.open(t.id);
 		});
 
-		//set publish button listener
+		//set download button listener
 		frag.getElementById("local-project-download-"+this.id).addEventListener('click', function (evt) {
 			t.download();
+		});
+
+		//set duplicate button listener
+		frag.getElementById("local-project-duplicate-"+this.id).addEventListener('click', function (evt) {
+			t.duplicate();
 		});
 
 		//set share button listener
