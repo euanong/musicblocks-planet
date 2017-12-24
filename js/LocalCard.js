@@ -22,10 +22,10 @@ function LocalCard(Planet){
 					<div class="card share-card" id="sharebox-{ID}" style="display:none;"> \
 						<div class="card-content shareurltext"> \
 							<div class="shareurltitle">Share</div> \
-							<input type="text" name="shareurl" class="shareurlinput" value="https://walterbender.github.io/musicblocks/index.html?id={ID}"> \
+							<input type="text" name="shareurl" class="shareurlinput" data-originalurl="https://walterbender.github.io/musicblocks/index.html?id={ID}"> \
 							<div class="shareurl-advanced" id="advanced-{ID}"> \
 								<div class="shareurltitle">Flags</div> \
-								<div><input type="checkbox" name="run" id="checkboxrun-{ID}"><label for="checkboxrun-{ID}">Run project on startup.</label></div> \
+								<div><input type="checkbox" name="run" id="checkboxrun-{ID}" checked><label for="checkboxrun-{ID}">Run project on startup.</label></div> \
 								<div><input type="checkbox" name="show" id="checkboxshow-{ID}"><label for="checkboxshow-{ID}">Show code blocks on startup.</label></div> \
 								<div><input type="checkbox" name="collapse" id="checkboxcollapse-{ID}"><label for="checkboxcollapse-{ID}">Collapse code blocks on startup.</label></div> \
 							</div> \
@@ -57,26 +57,24 @@ function LocalCard(Planet){
 		//set input text
 		frag.getElementById("local-project-input-"+this.id).value = this.ProjectData.ProjectName;
 		
-		//set input modify listener
 		var t = this;
+
+		//set input modify listener
 		frag.getElementById("local-project-input-"+this.id).addEventListener('input', function (evt) {
 			Planet.ProjectStorage.renameProject(t.id,this.value);
 		});
 
 		//set delete button listener
-		var t = this;
 		frag.getElementById("local-project-delete-"+this.id).addEventListener('click', function (evt) {
 			Planet.LocalPlanet.openDeleteModal(t.id);
 		});
 		
 		//set publish button listener
-		var t = this;
 		frag.getElementById("local-project-publish-"+this.id).addEventListener('click', function (evt) {
 			Planet.LocalPlanet.Publisher.open(t.id);
 		});
 
 		//set share button listener
-		var t = this;
 		frag.getElementById("local-project-share-"+this.id).addEventListener('click', function (evt) {
 			var s = document.getElementById("sharebox-"+t.id);
 			if (s.style.display=="none"){
@@ -87,9 +85,19 @@ function LocalCard(Planet){
 			}
 		});
 
+		//set share checkbox listener
+		frag.getElementById("checkboxrun-"+this.id).addEventListener('click', function (evt) {
+			updateCheckboxes("sharebox-"+t.id);
+		});
+		frag.getElementById("checkboxshow-"+this.id).addEventListener('click', function (evt) {
+			updateCheckboxes("sharebox-"+t.id);
+		});
+		frag.getElementById("checkboxcollapse-"+this.id).addEventListener('click', function (evt) {
+			updateCheckboxes("sharebox-"+t.id);
+		});
+
 		//set published cloud listener
 		if (this.ProjectData.PublishedData!=null){
-			var t = this;
 			frag.getElementById("local-project-cloud-"+this.id).style.display = "initial";
 			frag.getElementById("local-project-cloud-"+this.id).addEventListener('click', function (evt) {
 				//TODO: Implement view-published-project thing
@@ -98,8 +106,8 @@ function LocalCard(Planet){
 		}
 
 		document.getElementById("local-projects").appendChild(frag);
-
 		$('.tooltipped').tooltip({delay: 50});
+		updateCheckboxes("sharebox-"+t.id);
 	}
 
 	this.init = function(id){

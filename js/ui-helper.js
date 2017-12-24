@@ -41,6 +41,16 @@ function hideOnClickOutside(id, other) {
 	document.addEventListener('click', outsideClickListener);
 }
 
+function updateCheckboxes(id){
+    var elements = document.getElementById(id).querySelectorAll('input:checked');
+    var urlel = document.getElementById(id).querySelectorAll('input[type=text]')[0];
+    var url = urlel.getAttribute("data-originalurl");
+    for (var i = 0; i<elements.length; i++){
+        url+="&"+elements[i].name+"=True";
+    }
+    urlel.value = url;
+}
+
 $(document).ready(function() {
 	$('#publisher').modal();
 	$('#deleter').modal();

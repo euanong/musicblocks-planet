@@ -63,7 +63,7 @@
 }
 .share-card{
 	position:  absolute;
-    z-index:  100;
+    z-index:  200;
     left:  50%;
     -webkit-transform: translateX(-50%);
         -ms-transform: translateX(-50%);
@@ -212,7 +212,7 @@ a {
 }
 .published-cloud{
 	position: absolute;
-    z-index: 1000;
+    z-index: 100;
     margin-left: 15px;
     margin-top: 15px;
     color: #fff;
