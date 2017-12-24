@@ -11,6 +11,5 @@ function openProject(data,image){
 
 $(document).ready(function(){
 	p = new Planet();
-	p.init();
-	p.open();
+	p.init(function(){p.open();});
 });

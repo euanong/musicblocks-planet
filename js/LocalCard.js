@@ -7,7 +7,7 @@ function LocalCard(Planet){
 	<div class="card"> \
 		<div class="card-image"> \
 			<img class="project-image" id="local-project-image-{ID}"> \
-			<a class="btn-floating halfway-fab waves-effect waves-light orange modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Publish project" href="#publisher"><i class="material-icons">cloud_upload</i></a> \
+			<a class="btn-floating halfway-fab waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="Publish project" id="local-project-publish-{ID}"><i class="material-icons">cloud_upload</i></a> \
 		</div> \
 		<div class="card-content"> \
 			<input class="card-title grey-text text-darken-4" id="local-project-input-{ID}" /> \
@@ -45,14 +45,17 @@ function LocalCard(Planet){
 		//TODO: Have a TB placeholder image specific to TB projects
 		var html = this.renderData.replace(new RegExp('\{ID\}', 'g'), this.id);
 		var frag = document.createRange().createContextualFragment(html);
+		
 		//set image
 		if (this.ProjectData.ProjectImage!=null){
 			frag.getElementById("local-project-image-"+this.id).src = this.ProjectData.ProjectImage;
 		} else {
 			frag.getElementById("local-project-image-"+this.id).src = this.placeholderImage;
 		}
+		
 		//set input text
 		frag.getElementById("local-project-input-"+this.id).value = this.ProjectData.ProjectName;
+		
 		//set input modify listener
 		var t = this;
 		frag.getElementById("local-project-input-"+this.id).addEventListener('input', function (evt) {
@@ -64,6 +67,13 @@ function LocalCard(Planet){
 		frag.getElementById("local-project-delete-"+this.id).addEventListener('click', function (evt) {
 			Planet.LocalPlanet.openDeleteModal(t.id);
 		});
+		
+		//set delete button listener
+		var t = this;
+		frag.getElementById("local-project-publish-"+this.id).addEventListener('click', function (evt) {
+			Planet.LocalPlanet.openPublishModal(t.id);
+		});
+
 		document.getElementById("local-projects").appendChild(frag);
 	}
 

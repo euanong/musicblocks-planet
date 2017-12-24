@@ -62,12 +62,16 @@
                 <div class="modal-content" id="publisher-content">
                     <a class="modal-close close-button"><i class="material-icons">close</i></a>
                     <h4>Publish Project</h4>
+                    <div class="progress" id="publisher-progress" style="visibility: hidden;">
+                        <div class="indeterminate"></div>
+                    </div>
                     <form class="col no-margin-left s12" id="publisher-form">
+                        <input type="hidden" id="publish-id" name="ProjectID">
                         <div class="row">
                             <div class="col no-margin-left s6">
                                 <div class="row">
                                     <div class="input-field">
-                                        <input id="publish-title" type="text" class="validate" data-length="50">
+                                        <input id="publish-title" type="text" class="validate" data-length="50" required>
                                         <label for="publish-title">Project title</label>
                                     </div>
                                 </div>
@@ -84,14 +88,14 @@
                         </div>
                         <div class="row">
                             <div class="input-field col no-margin-left s12">
-                                <textarea id="publish-description" class="materialize-textarea" data-length="1000"></textarea>
+                                <textarea id="publish-description" class="materialize-textarea" data-length="1000" required></textarea>
                                 <label for="publish-description">Description</label>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="publisher-submit">Submit</a>
+                    <a class="modal-action waves-effect waves-green btn-flat" id="publisher-submit">Submit</a>
                     <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
                 </div>
             </div>
