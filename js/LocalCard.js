@@ -2,6 +2,7 @@ function LocalCard(Planet){
 	this.placeholderImage = "images/planetgraphic.png";
 	this.id = null;
 	this.ProjectData = null;
+	this.DownloadExtension = "tb";
 	this.renderData = '\
 <div class="col no-margin-left s12 m6 l4"> \
 	<div class="card"> \
@@ -35,12 +36,22 @@ function LocalCard(Planet){
 						</div> \
 					</div> \
 				</div> \
-				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Download project" href="#"><i class="material-icons">file_download</i></a> \
+				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Download project" id="local-project-download-{ID}"><i class="material-icons">file_download</i></a> \
 				<a class="project-icon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Merge with current project" href="#"><i class="material-icons">merge_type</i></a> \
 			</div> \
 		</div> \
 	</div>  \
 </div>';
+
+	this.download = function(){
+		var element = document.createElement('a');
+		element.setAttribute('href', 'data:text/plain;charset=utf-8,'+encodeURIComponent(this.ProjectData.ProjectData));
+		element.setAttribute('download', this.ProjectData.ProjectName+"."+this.DownloadExtension);
+		element.style.display = 'none';
+		document.body.appendChild(element);
+		element.click();
+		document.body.removeChild(element);
+	}
 
 	this.render = function(){
 		//TODO: Have a TB placeholder image specific to TB projects
@@ -74,12 +85,21 @@ function LocalCard(Planet){
 			Planet.LocalPlanet.Publisher.open(t.id);
 		});
 
+		//set publish button listener
+		frag.getElementById("local-project-download-"+this.id).addEventListener('click', function (evt) {
+			t.download();
+		});
+
 		//set share button listener
 		frag.getElementById("local-project-share-"+this.id).addEventListener('click', function (evt) {
 			var s = document.getElementById("sharebox-"+t.id);
 			if (s.style.display=="none"){
-				s.style.display = "initial";
-				hideOnClickOutside(document.getElementById("share-"+t.id), "sharebox-"+t.id);
+				if (t.ProjectData.PublishedData!=null){
+					s.style.display = "initial";
+					hideOnClickOutside(document.getElementById("share-"+t.id), "sharebox-"+t.id);
+				} else {
+					Planet.LocalPlanet.Publisher.open(t.id,true);
+				}
 			} else {
 				s.style.display = "none";
 			}

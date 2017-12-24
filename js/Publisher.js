@@ -6,6 +6,7 @@ function Publisher(Planet){
 	this.DescriptionLowerBound = 1;
 	this.DescriptionUpperBound = 1000;
 	this.ProjectTable = Planet.LocalPlanet.ProjectTable;
+	this.IsShareLink = false;
 
 	this.findTagWithName = function(name){
 		var keys = Object.keys(Planet.TagsManifest);
@@ -87,7 +88,11 @@ function Publisher(Planet){
 		document.getElementById("publisher-submit").addEventListener('click', this.publishProject.bind(this));
 	}
 
-	this.open = function(id){
+	this.open = function(id, IsShareLink){
+		if (IsShareLink===undefined){
+			IsShareLink = false;
+		}
+		this.IsShareLink = IsShareLink;
 		var name = this.ProjectTable[id].ProjectName;
 		var image = this.ProjectTable[id].ProjectImage;
 		var published = this.ProjectTable[id].PublishedData;
@@ -211,6 +216,9 @@ function Publisher(Planet){
 			this.hideProgressBar();
 			this.close();
 			Planet.LocalPlanet.updateProjects();
+			if (this.IsShareLink){
+				document.getElementById("sharebox-"+id).style.display = "initial";
+			}
 		} else {
 			this.throwError("Server Error ("+data.error+") - Try Again");
 			this.hideProgressBar();
