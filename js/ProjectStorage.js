@@ -21,6 +21,7 @@ function ProjectStorage(Planet){
 		var c = this.data.CurrentProject;
 		this.data.Projects[c].ProjectData = data;
 		this.data.Projects[c].ProjectImage = image;
+		this.data.Projects[c].DateLastModified = Date.now();
 		this.save();
 	}
 
@@ -32,13 +33,19 @@ function ProjectStorage(Planet){
 		this.data.Projects[c].ProjectData = null;
 		this.data.Projects[c].ProjectImage = null;
 		this.data.Projects[c].PublishedData = null;
+		this.data.Projects[c].DateLastModified = null;
 		this.save();
 	}
 
-	this.renameCurrentProject = function(name){
-		var c = this.data.CurrentProject;
-		this.data.Projects[c].ProjectName = name;
+	this.renameProject = function(id, name){
+		this.data.Projects[id].ProjectName = name;
 		this.save();
+	}
+
+	this.deleteProject = function(id){
+		delete this.data.Projects[id];
+		this.save();
+		Planet.LocalPlanet.updateProjects();
 	}
 
 	this.getCurrentProjectID = function(){
@@ -58,7 +65,7 @@ function ProjectStorage(Planet){
 			return null;
 		}
 		try {
-			JSON.parse(jsonobj);
+			return JSON.parse(jsonobj);
 		} catch (e){
 			console.log(e);
 			return null;
@@ -83,7 +90,7 @@ function ProjectStorage(Planet){
 	this.init = function(){
 		this.LocalStorage = Planet.LocalStorage;
 		this.restore();
-		if (this.data==null){
+		if (this.data===null){
 			this.initialiseStorage();
 		}
 	}

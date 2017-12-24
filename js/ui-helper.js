@@ -28,6 +28,7 @@ function clearSearchBar(){
 
 $(document).ready(function() {
     $('#publisher').modal();
+    $('#deleter').modal();
     $('#projectviewer').modal();
     $('#sort-select').material_select();
     document.getElementById("global-search").addEventListener('input', function (evt) {

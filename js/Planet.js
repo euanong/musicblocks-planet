@@ -3,9 +3,11 @@ function Planet(){
 	this.ProjectStorage = null;
 	this.ServerInterface = null;
 	this.LocalStorage = window.localStorage;
+	this.ConnectedToServer = true;
+	this.TagsManifest = null;
 
 	this.open = function(){
-		this.LocalPlanet.open();
+		this.LocalPlanet.updateProjects();
 	}
 
 	this.saveLocally = function(data, image){

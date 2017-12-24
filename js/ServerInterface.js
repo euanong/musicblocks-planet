@@ -24,6 +24,11 @@ function ServerInterface(Planet){
 		this.request(obj,callback);
 	}
 
+	this.getTagManifest = function(callback){
+		var obj = {"action":"getTagManifest"};
+		this.request(obj,callback);
+	}
+
 	this.init = function(){
 
 	}

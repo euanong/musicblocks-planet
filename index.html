@@ -17,7 +17,9 @@
         <script type="text/javascript" src="js/ui-helper.js"></script>
         <script type="text/javascript" src="js/helper.js"></script>
         <script type="text/javascript" src="js/ProjectStorage.js"></script>
-        <script type="text/javascript" src="js/ServerInterface.js"></script>        <script type="text/javascript" src="js/LocalPlanet.js"></script>
+        <script type="text/javascript" src="js/ServerInterface.js"></script>
+        <script type="text/javascript" src="js/LocalCard.js"></script>
+        <script type="text/javascript" src="js/LocalPlanet.js"></script>
         <script type="text/javascript" src="js/Planet.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </head>
@@ -50,17 +52,17 @@
                 <div class="section">
                     <div class="row">
                         <div class="col no-margin-left s12">
-                            <div class="section projectscontainer" id="localprojects">
+                            <div class="section projectscontainer" id="local-projects">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div id="publisher" class="modal">
-                <a class="modal-close close-button"><i class="material-icons">close</i></a>
-                <div class="modal-content">
+                <div class="modal-content" id="publisher-content">
+                    <a class="modal-close close-button"><i class="material-icons">close</i></a>
                     <h4>Publish Project</h4>
-                    <form class="col no-margin-left s12">
+                    <form class="col no-margin-left s12" id="publisher-form">
                         <div class="row">
                             <div class="col no-margin-left s6">
                                 <div class="row">
@@ -89,10 +91,21 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="publisher-submit">Submit</a>
                     <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
                 </div>
             </div>
+            <div id="deleter" class="modal">
+                <div class="modal-content">
+                    <a class="modal-close close-button"><i class="material-icons">close</i></a>
+                    <h4>Delete "<span id="deleter-title"></span>"?</h4>
+                    <p>Permanently delete project "<span id="deleter-name"></span>"?</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" id="deleter-button" class="modal-action modal-close waves-effect waves-red btn-flat">Delete</a>
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+                </div>
+          </div>
         </div>
         <div id="global">
             <div class="section no-pad-bot">
