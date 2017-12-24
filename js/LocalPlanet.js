@@ -17,9 +17,11 @@ function LocalPlanet(Planet){
 	}
 	
 	this.updateProjects = function(){
+		$('.tooltipped').tooltip('remove');
 		this.refreshProjectArray();
 		this.initCards();
 		this.renderAllProjects();
+		$('.tooltipped').tooltip({delay: 50});
 	}
 
 	this.refreshProjectArray = function(){
