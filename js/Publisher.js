@@ -178,7 +178,7 @@ function Publisher(Planet){
             //console.log(obj[1]);
             //console.log(obj[2]);
 			submitobj.ProjectSearchKeywords = this.parseProject(this.ProjectTable[id].ProjectData);
-			submitobj.ProjectData = window.btoa(this.ProjectTable[id].ProjectData);
+			submitobj.ProjectData = Planet.ProjectStorage.encodeTB(this.ProjectTable[id].ProjectData);
 			submitobj.ProjectImage = this.ProjectTable[id].ProjectImage;
 			submitobj.ProjectIsMusicBlocks = (Planet.IsMusicBlocks ? 1 : 0);
 			submitobj.ProjectCreatorName = Planet.ProjectStorage.getDefaultCreatorName();

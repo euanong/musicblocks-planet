@@ -77,6 +77,14 @@ function ProjectStorage(Planet){
 		return this.data.CurrentProject;
 	};
 
+	this.encodeTB = function(tb){
+		return window.btoa(encodeURIComponent(tb));
+	}
+
+	this.decodeTB = function(tb){
+		return decodeURIComponent(window.atob(tb));
+	}
+
 	//Ancillary Functions
 
 	this.set = function(key, obj){
