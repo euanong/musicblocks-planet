@@ -18,7 +18,7 @@ function GlobalPlanet(Planet) {
 	this.defaultTag = null;
 	this.searchMode = null;
 	this.index = 0;
-	this.page = 25;
+	this.page = 24;
 	this.sortBy = null;
 	this.cache = {};
 	this.loadCount = 0;
