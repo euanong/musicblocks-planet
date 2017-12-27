@@ -10,22 +10,11 @@
 // Foundation, 51 Franklin Street, Suite 500 Boston, MA 02110-1335 USA
 
 function LocalPlanet(Planet){
-	this.UserIDCookie = "UserID";
-	this.UserID = null;
 	this.CookieDuration = 3650;
 	this.ProjectTable = null;
 	this.projects = null;
 	this.DeleteModalID = null;
 	this.Publisher = null;
-
-	this.prepareUserID = function(){
-		var id = getCookie(this.UserIDCookie);
-		if (id==""){
-			id = Planet.ProjectStorage.generateID();
-			setCookie(this.UserIDCookie,id,3650);
-		}
-		this.UserID = id;
-	};
 	
 	this.updateProjects = function(){
 		$('.tooltipped').tooltip('remove');
@@ -79,7 +68,6 @@ function LocalPlanet(Planet){
 	};
 
 	this.init = function(){
-		this.prepareUserID();
 		this.ProjectTable = Planet.ProjectStorage.data.Projects;
 		this.refreshProjectArray();
 		this.initDeleteModal();

@@ -18,6 +18,17 @@ function Planet(isMusicBlocks){
 	this.ConnectedToServer = null;
 	this.TagsManifest = null;
 	this.IsMusicBlocks = isMusicBlocks;
+	this.UserIDCookie = "UserID";
+	this.UserID = null;
+
+	this.prepareUserID = function(){
+		var id = getCookie(this.UserIDCookie);
+		if (id==""){
+			id = this.ProjectStorage.generateID();
+			setCookie(this.UserIDCookie,id,3650);
+		}
+		this.UserID = id;
+	};
 
 	this.open = function(){
 		this.LocalPlanet.updateProjects();
@@ -30,8 +41,7 @@ function Planet(isMusicBlocks){
 	this.init = function(callback){
 		this.ProjectStorage = new ProjectStorage(this);
 		this.ProjectStorage.init();
-		this.LocalPlanet = new LocalPlanet(this);
-		this.LocalPlanet.init();
+		this.prepareUserID();
 		this.ServerInterface = new ServerInterface(this);
 		this.ServerInterface.init();
 		this.ServerInterface.getTagManifest(function(data){this.initPlanets(data,callback)}.bind(this));
@@ -44,6 +54,8 @@ function Planet(isMusicBlocks){
 			this.ConnectedToServer = true;
 			this.TagsManifest = tags.data;
 		}
+		this.LocalPlanet = new LocalPlanet(this);
+		this.LocalPlanet.init();
 		this.GlobalPlanet = new GlobalPlanet(this);
 		this.GlobalPlanet.init();
 		if (callback!=undefined){
