@@ -43,7 +43,6 @@ function toggleSearch(on){
 };
 function toggleText(id, a, b){
 	var t = document.getElementById(id).innerHTML;
-	console.log(t);
 	if (t.indexOf(a)!==-1){
 		document.getElementById(id).innerHTML = t.replace(a, b);
 	} else {
@@ -91,7 +90,6 @@ $(document).ready(function() {
 	$('#publisher').modal();
 	$('#deleter').modal();
 	$('#projectviewer').modal();
-	$('#sort-select').material_select();
 	document.getElementById("global-search").addEventListener('input', function (evt) {
 			if(this.value!=""){
 				document.getElementById("search-close").style.display = "initial";

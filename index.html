@@ -20,6 +20,8 @@
         <script type="text/javascript" src="js/LocalCard.js"></script>
         <script type="text/javascript" src="js/Publisher.js"></script>
         <script type="text/javascript" src="js/LocalPlanet.js"></script>
+        <script type="text/javascript" src="js/GlobalTag.js"></script>
+        <script type="text/javascript" src="js/GlobalPlanet.js"></script>
         <script type="text/javascript" src="js/Planet.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </head>
@@ -118,35 +120,37 @@
                     <h3 class="header center light-green-text" id="globaltitle">Explore Projects</h3>
                 </div>
             </div>
-            <div class="section flexcontainer">
-                <div class="container">
-                    <div class="flexchips", id="primarychips">
-                    </div>
-                    <div class="flexchips", id="morechips">
-                    </div>
-                    <a class="waves-effect btn-flat centre-button" id="view-more-chips" onclick="toggleExpandable('morechips','flexchips');toggleText('view-more-chips','View More','View Less');">View More</a>
-                </div>
-            </div>
-            <div class="container">
-                <div class="section">
-                    <div class="row">
-                        <div class="input-field col s3 offset-s9">
-                            <select id="sort-select">
-                                <option value="recent" selected>Most recent</option>
-                                <option value="liked">Most liked</option>
-                                <option value="downloaded">Most downloaded</option>
-                                <option value="alphabetical">A-Z</option>
-                            </select>
-                            <label>Sort by</label>
+            <div id="globalcontents">
+                <div class="section flexcontainer">
+                    <div class="container">
+                        <div class="flexchips", id="primarychips">
                         </div>
+                        <div class="flexchips", id="morechips">
+                        </div>
+                        <a class="waves-effect btn-flat centre-button" id="view-more-chips" onclick="toggleExpandable('morechips','flexchips');toggleText('view-more-chips','View More','View Less');">View More</a>
                     </div>
-                    <div class="row">
-                        <div class="col no-margin-left s12">
-                            <div class="section projectscontainer" id="globalprojects">
+                </div>
+                <div class="container">
+                    <div class="section">
+                        <div class="row">
+                            <div class="input-field col s3 offset-s9">
+                                <select id="sort-select">
+                                    <option value="RECENT" selected>Most recent</option>
+                                    <option value="LIKED">Most liked</option>
+                                    <option value="DOWNLOADED">Most downloaded</option>
+                                    <option value="ALPHABETICAL">A-Z</option>
+                                </select>
+                                <label>Sort by</label>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col no-margin-left s12">
+                                <div class="section projectscontainer" id="globalprojects">
+                                </div>
+                            </div>
+                        </div>
+                        <a class="waves-effect btn-flat centre-button" id="load-more-projects">Load More Projects</a>
                     </div>
-                    <a class="waves-effect btn-flat centre-button" id="load-more-projects">Load More Projects</a>
                 </div>
             </div>
             <div id="projectviewer" class="modal">

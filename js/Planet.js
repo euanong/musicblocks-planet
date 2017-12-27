@@ -11,6 +11,7 @@
 
 function Planet(isMusicBlocks){
 	this.LocalPlanet = null;
+	this.GlobalPlanet = null;
 	this.ProjectStorage = null;
 	this.ServerInterface = null;
 	this.LocalStorage = window.localStorage;
@@ -43,6 +44,8 @@ function Planet(isMusicBlocks){
 		}
 		this.LocalPlanet = new LocalPlanet(this);
 		this.LocalPlanet.init();
+		this.GlobalPlanet = new GlobalPlanet(this);
+		this.GlobalPlanet.init();
 		if (callback!=undefined){
 			callback();
 		}

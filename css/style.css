@@ -159,7 +159,11 @@
 	background-color: #26a69a;
     color: #fff;
 }
-.chipselect.cursor:not(.selected){
+.chipselect.selected-special{
+	background-color: #26a69a;
+    color: #fff;
+}
+.chipselect.cursor:not(.selected-special){
 	cursor: pointer;
 }
 .centre-button{

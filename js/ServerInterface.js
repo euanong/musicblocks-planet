@@ -36,6 +36,11 @@ function ServerInterface(Planet){
 		this.request(obj,callback);
 	};
 
+	this.downloadProjectList = function(ProjectTags,ProjectSort,Start,End,callback){
+		var obj = {"action":"downloadProjectList","ProjectTags":ProjectTags,"ProjectSort":ProjectSort,"Start":Start,"End":End};
+		this.request(obj,callback);
+	}
+
 	this.init = function(){
 
 	};
