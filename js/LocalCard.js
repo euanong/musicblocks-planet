@@ -13,7 +13,6 @@ function LocalCard(Planet){
 	this.placeholderImage = "images/planetgraphic.png";
 	this.id = null;
 	this.ProjectData = null;
-	this.DownloadExtension = "tb";
 	this.CopySuffix = "("+_("Copy")+")";
 	this.renderData = '\
 <div class="col no-margin-left s12 m6 l4"> \
@@ -57,13 +56,7 @@ function LocalCard(Planet){
 </div>';
 
 	this.download = function(){
-		var element = document.createElement('a');
-		element.setAttribute('href', 'data:text/plain;charset=utf-8,'+encodeURIComponent(this.ProjectData.ProjectData));
-		element.setAttribute('download', this.ProjectData.ProjectName+"."+this.DownloadExtension);
-		element.style.display = 'none';
-		document.body.appendChild(element);
-		element.click();
-		document.body.removeChild(element);
+		downloadTB(this.ProjectData.ProjectName, this.ProjectData.ProjectData);
 	};
 
 	this.duplicate = function(){
@@ -144,12 +137,12 @@ function LocalCard(Planet){
 			frag.getElementById("local-project-cloud-"+this.id).style.display = "initial";
 			frag.getElementById("local-project-cloud-"+this.id).addEventListener('click', function (evt) {
 				//TODO: Implement view-published-project thing
-				console.log("open id "+t.id+" in global planet");
+				document.getElementById("global-tab").click();
+				Planet.GlobalPlanet.forceAddToCache(t.id,function(){Planet.GlobalPlanet.ProjectViewer.open(t.id);});
 			});
 		}
 
 		document.getElementById("local-projects").appendChild(frag);
-		$('.tooltipped').tooltip({delay: 50});
 		updateCheckboxes("sharebox-"+t.id);
 	};
 

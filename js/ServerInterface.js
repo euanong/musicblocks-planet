@@ -39,7 +39,27 @@ function ServerInterface(Planet){
 	this.downloadProjectList = function(ProjectTags,ProjectSort,Start,End,callback){
 		var obj = {"action":"downloadProjectList","ProjectTags":ProjectTags,"ProjectSort":ProjectSort,"Start":Start,"End":End};
 		this.request(obj,callback);
-	}
+	};
+
+	this.getProjectDetails = function(ProjectID, callback){
+		var obj = {"action":"getProjectDetails","ProjectID":ProjectID};
+		this.request(obj,callback);
+	};
+
+	this.searchProjects = function(Search,ProjectSort,Start,End,callback){
+		var obj = {"action":"searchProjects","Search":Search,"ProjectSort":ProjectSort,"Start":Start,"End":End};
+		this.request(obj,callback);
+	};
+
+	this.downloadProject = function(ProjectID, callback){
+		var obj = {"action":"downloadProject","ProjectID":ProjectID};
+		this.request(obj,callback);
+	};
+
+	this.likeProject = function(ProjectID, Like, callback){
+		var obj = {"action":"likeProject","ProjectID":ProjectID,"Like":((Like) ? 'true' : 'false')};
+		this.request(obj,callback);
+	};
 
 	this.init = function(){
 

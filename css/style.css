@@ -17,6 +17,9 @@
 .project-image{
 	background-color: #96D3F3;
 }
+.no-padding{
+	padding: 0rem;
+}
 .project-icon{
 	margin-right: 3px !important;
 }
@@ -220,4 +223,11 @@ a {
     margin-left: 15px;
     margin-top: 15px;
     color: #fff;
+}
+
+.centre-load{
+	left: calc(50% - 18px);
+}
+.absolute{
+	position: absolute;
 }

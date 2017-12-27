@@ -10,7 +10,9 @@
 // Foundation, 51 Franklin Street, Suite 500 Boston, MA 02110-1335 USA
 
 function GlobalPlanet(Planet) {
+	this.ProjectViewer = null;
 	this.offlineHTML = '<div class="container center-align">'+_('Feature unavailable - cannot connect to server. Reload Music Blocks to try again.')+'</div>';
+	this.noProjects = '<div class="container center-align">'+_('No results found.')+'</div>';
 	this.tags = [];
 	this.specialTags = null;
 	this.defaultTag = null;
@@ -18,6 +20,13 @@ function GlobalPlanet(Planet) {
 	this.index = 0;
 	this.page = 25;
 	this.sortBy = null;
+	this.cache = {};
+	this.loadCount = 0;
+	this.cards = [];
+	this.loadButtonShown = true;
+	this.searching = false;
+	this.searchString = "";
+	this.oldSearchString = "";
 
 	this.initTagList = function(){
 		for (var i = 0; i<this.specialTags.length; i++){
@@ -36,7 +45,7 @@ function GlobalPlanet(Planet) {
 		}
 		this.sortBy = document.getElementById("sort-select").value;
 		this.selectSpecialTag(this.defaultTag);
-	}
+	};
 
 	this.selectSpecialTag = function(tag){
 		for (var i = 0; i<this.tags.length; i++){
@@ -44,7 +53,7 @@ function GlobalPlanet(Planet) {
 		}
 		tag.select();
 		tag.func();
-	}
+	};
 
 	this.unselectSpecialTags = function(){
 		for (var i = 0; i<this.tags.length; i++){
@@ -52,7 +61,7 @@ function GlobalPlanet(Planet) {
 				this.tags[i].unselect();
 			}
 		}
-	}
+	};
 
 	this.refreshTagList = function(){
 		var tagids = [];
@@ -67,37 +76,232 @@ function GlobalPlanet(Planet) {
 			this.unselectSpecialTags();
 			this.searchTags(tagids);
 		}
-	}
+	};
 
 	this.searchAllProjects = function(){
 		this.searchMode = "ALL_PROJECTS";
 		this.refreshProjects();
-	}
+	};
 
 	this.searchMyProjects = function(){
 		this.searchMode = "USER_PROJECTS";
 		this.refreshProjects();
-	}
-
-	this.searchRecentlyViewed = function(){
-		console.log("recently viewed");
-	}
+	};
 
 	this.searchTags = function(tagids){
 		this.searchMode = JSON.stringify(tagids);
 		this.refreshProjects();
-	}
+	};
 
 	this.refreshProjects = function(){
 		this.index = 0;
-		console.log(this.searchMode);
-		console.log(this.sortBy);
-		Planet.ServerInterface.downloadProjectList(this.searchMode,this.sortBy,this.index,this.index+this.page,this.afterRefreshProjects);
-	}
+		this.cards = [];
+		document.getElementById("global-projects").innerHTML = "";
+		this.showLoading();
+		this.hideLoadMore();
+		if (this.oldSearchString!=""){
+			Planet.ServerInterface.searchProjects(this.oldSearchString,this.sortBy,this.index,this.index+this.page+1,this.afterRefreshProjects.bind(this));
+		} else {
+			Planet.ServerInterface.downloadProjectList(this.searchMode,this.sortBy,this.index,this.index+this.page+1,this.afterRefreshProjects.bind(this));
+		}
+	};
+
+	this.loadMoreProjects = function(){
+		this.showLoading();
+		this.hideLoadMore();
+		if (this.oldSearchString!=""){
+			Planet.ServerInterface.searchProjects(this.oldSearchString,this.sortBy,this.index,this.index+this.page+1,this.afterRefreshProjects.bind(this));
+		} else {
+			Planet.ServerInterface.downloadProjectList(this.searchMode,this.sortBy,this.index,this.index+this.page+1,this.afterRefreshProjects.bind(this));
+		}
+	};
+
+	this.search = function(){
+		if (!this.searching){
+			if (this.searchString==""){
+				this.oldSearchString = "";
+				this.searching = false;
+				this.showTags();
+			} else {
+				this.searching = true;
+				this.hideTags();
+			}
+			this.oldSearchString = this.searchString;
+			this.index=0;
+			this.cards=[];
+			document.getElementById("global-projects").innerHTML = "";
+			this.showLoading();
+			this.hideLoadMore();
+			Planet.ServerInterface.searchProjects(this.oldSearchString,this.sortBy,this.index,this.index+this.page+1,this.afterRefreshProjects.bind(this));
+		}
+	};
+
+	this.afterSearch = function(){
+		this.searching = false;
+		if (this.searchString!=this.oldSearchString){
+			this.search();
+		}
+	};
 
 	this.afterRefreshProjects = function(data){
-		console.log(data);
-	}
+		if (data.success){
+			this.addProjects(data.data);
+		} else {
+			this.throwOfflineError();
+		}
+	};
+
+	this.addProjects = function(data){
+		var toDownload = [];
+		for (var i = 0; i<data.length; i++){
+			if (this.cache.hasOwnProperty(data[i][0])){
+				if (this.cache[data[i][0]].ProjectLastUpdated!=data[i][1]){
+					toDownload.push(data[i]);
+				}
+			} else {
+				toDownload.push(data[i]);
+			}
+		}
+		this.loadCount=toDownload.length;
+		if (data.length==0){
+			this.throwNoProjectsError();
+			this.afterAddProjects();
+		} else if (this.loadCount==0){
+			this.render(data);
+			if (data.length==this.page+1){
+				this.showLoadMore();
+			} else {
+				this.hideLoadMore();
+			}
+		} else if (data.length==this.page+1){
+			data.pop();
+			this.downloadProjectsToCache(toDownload,function(){this.render(data);this.showLoadMore();}.bind(this));
+		} else {
+			this.downloadProjectsToCache(toDownload,function(){this.render(data);this.hideLoadMore();}.bind(this));
+		}
+	};
+
+	this.downloadProjectsToCache = function(data,callback){
+		this.loadCount = data.length;
+		for (var i = 0; i<data.length; i++){
+			(function(){
+				var id = data[i][0];
+				Planet.ServerInterface.getProjectDetails(id,function(d){var tempid = id;this.addProjectToCache(tempid,d,callback)}.bind(this));
+			}.bind(this))();
+		}
+	};
+
+	this.addProjectToCache = function(id,data,callback){
+		if (data.success){
+			this.cache[id]=data.data;
+			this.cache[id].ProjectData = null;
+			this.loadCount-=1;
+			if (this.loadCount<=0){
+				callback();
+			}
+		} else {
+			this.throwOfflineError();
+		}
+	};
+
+	this.forceAddToCache = function(id,callback){
+		Planet.ServerInterface.getProjectDetails(id,function(d){this.addProjectToCache(id,d,callback)}.bind(this));
+	};
+
+	this.afterForceAddToCache = function(id,data,callback){
+		if (data.success){
+			this.cache[id]=data.data;
+			this.cache[id].ProjectData = null;
+			callback();
+		} else {
+			this.throwOfflineError();
+		}
+	};
+
+	this.getData = function(id,callback){
+		if (this.cache[id].ProjectData!=null){
+			callback(this.cache[id].ProjectData);
+		} else {
+			this.downloadDataToCache(id,callback);
+		}
+	};
+
+	this.downloadDataToCache = function(id,callback){
+		Planet.ServerInterface.downloadProject(id,function(data){this.afterDownloadData(id,data,callback)}.bind(this));
+	};
+
+	this.afterDownloadData = function(id,data,callback){
+		if (data.success){
+			this.cache[id].ProjectData = Planet.ProjectStorage.decodeTB(data.data);
+			callback(this.cache[id].ProjectData);
+		} else {
+			//TODO: Implement error message
+		}
+	};
+
+	this.render = function(data){
+		for (var i = 0; i<data.length; i++){
+			if (this.cache.hasOwnProperty(data[i][0])){
+				var g = new GlobalCard(Planet);
+				g.init(data[i][0]);
+				g.render();
+				this.cards.push(g);
+			} else {
+				this.throwOfflineError();
+				return;
+			}
+		}
+		$('.tooltipped').tooltip({delay: 50});
+		this.afterAddProjects();
+	};
+
+	this.afterAddProjects = function(){
+		this.index+=this.page;
+		this.hideLoading();
+		if (this.oldSearchString!=""){
+			this.afterSearch();
+		}
+	};
+
+	this.throwOfflineError = function(){
+		this.hideLoading();
+		this.hideLoadMore();
+		document.getElementById("global-projects").innerHTML = this.offlineHTML;
+	};
+
+	this.throwNoProjectsError = function(){
+		this.hideLoading();
+		this.hideLoadMore();
+		document.getElementById("global-projects").innerHTML = this.noProjects;
+	};
+
+	this.hideLoading = function(){
+		document.getElementById("global-load").style.display = "none";
+	};
+
+	this.showLoading = function(){
+		document.getElementById("global-load").style.display = "block";
+	};
+
+	this.hideLoadMore = function(){
+		document.getElementById("load-more-projects").style.display = "none";
+		this.loadButtonShown = false;
+	};
+
+	this.showLoadMore = function(){
+		var l = document.getElementById("load-more-projects");
+		l.style.display = "block";
+		l.classList.remove("disabled");
+		this.loadButtonShown = true;
+	};
+
+	this.hideTags = function(){
+		document.getElementById("tagscontainer").style.display = "none";
+	};
+
+	this.showTags = function(){
+		document.getElementById("tagscontainer").style.display = "block";
+	};
 
 	this.init = function(){
 		if (!Planet.ConnectedToServer){
@@ -111,9 +315,27 @@ function GlobalPlanet(Planet) {
 			});
 			this.specialTags = 
 			[{"name":"All Projects","func":this.searchAllProjects.bind(this),"defaultTag":true},
-			{"name":"My Projects","func":this.searchMyProjects.bind(this)},
-			{"name":"Recently Viewed","func":this.searchRecentlyViewed.bind(this)}];
+			{"name":"My Projects","func":this.searchMyProjects.bind(this)}];
 			this.initTagList();
+			var t = this;
+			document.getElementById("load-more-projects").addEventListener('click', function (evt) {
+				if (t.loadButtonShown){
+					t.loadMoreProjects();
+				}
+			});
+			var debouncedfunction = debounce(this.search.bind(this),250);
+			document.getElementById("global-search").addEventListener('input', function (evt) {
+				t.searchString = this.value;
+				debouncedfunction();
+			});
+			document.getElementById("search-close").addEventListener('click', function (evt) {
+				document.getElementById("global-search").value="";
+				t.searchString="";
+				this.style.display = "none";
+				debouncedfunction();
+			});
+			this.ProjectViewer = new ProjectViewer(Planet);
+			this.ProjectViewer.init();
 		}
-	}
-}
+	};
+};

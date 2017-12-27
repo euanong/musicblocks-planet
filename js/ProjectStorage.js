@@ -79,11 +79,23 @@ function ProjectStorage(Planet){
 
 	this.encodeTB = function(tb){
 		return window.btoa(encodeURIComponent(tb));
-	}
+	};
 
 	this.decodeTB = function(tb){
 		return decodeURIComponent(window.atob(tb));
-	}
+	};
+
+	this.isLiked = function(id){
+		if (this.data.LikedProjects[id]==true){
+			return true;
+		}
+		return false;
+	};
+
+	this.like = function(id,like){
+		this.data.LikedProjects[id]=like;
+		this.save();
+	};
 
 	//Ancillary Functions
 
@@ -116,7 +128,8 @@ function ProjectStorage(Planet){
 	this.initialiseStorage = function(){
 		this.data = {};
 		this.data.Projects = {};
-		this.data.DefaultCreatorName = "anonymous";
+		this.data.LikedProjects = {};
+		this.data.DefaultCreatorName = _("anonymous");
 		this.save();
 	};
 

@@ -9,6 +9,42 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, 51 Franklin Street, Suite 500 Boston, MA 02110-1335 USA
 
+//https://stackoverflow.com/a/14588166/3575587
+function cleanName(name) {
+    name = name.replace(/\s+/gi, '-'); // Replace white space with dash
+    return name.replace(/[^a-zA-Z0-9\-]/gi, ''); // Strip any special charactere
+};
+
+function downloadTB(name,data) {
+	var element = document.createElement('a');
+	element.setAttribute('href', 'data:text/plain;charset=utf-8,'+encodeURIComponent(data));
+	element.setAttribute('download', cleanName(name)+".tb");
+	element.style.display = 'none';
+	document.body.appendChild(element);
+	element.click();
+	document.body.removeChild(element);
+};
+
+// https://davidwalsh.name/javascript-debounce-function
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// N milliseconds. If `immediate` is passed, trigger the function on the
+// leading edge, instead of the trailing.
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+
 function getCookie(cname){
 	//from W3Schools
 	var name = cname + "=";
@@ -56,9 +92,6 @@ function toggleExpandable(id, c){
 	} else {
 		document.getElementById(id).className = c+" open";
 	}
-};
-function clearSearchBar(){
-	document.getElementById("global-search").value = "";
 };
 
 function hideOnClickOutside(id, other) {

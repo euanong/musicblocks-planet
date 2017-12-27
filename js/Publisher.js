@@ -227,6 +227,7 @@ function Publisher(Planet){
 			this.hideProgressBar();
 			this.close();
 			Planet.LocalPlanet.updateProjects();
+			Planet.GlobalPlanet.refreshProjects();
 			if (this.IsShareLink){
 				document.getElementById("sharebox-"+id).style.display = "initial";
 			}
@@ -258,4 +259,4 @@ function Publisher(Planet){
 			this.initSubmit();
 		}
 	};
-}
+};

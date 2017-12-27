@@ -14,14 +14,20 @@
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="libs/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="libs/materialize.min.js"></script>
+
         <script type="text/javascript" src="js/helper.js"></script>
         <script type="text/javascript" src="js/ProjectStorage.js"></script>
         <script type="text/javascript" src="js/ServerInterface.js"></script>
+
         <script type="text/javascript" src="js/LocalCard.js"></script>
         <script type="text/javascript" src="js/Publisher.js"></script>
         <script type="text/javascript" src="js/LocalPlanet.js"></script>
+
         <script type="text/javascript" src="js/GlobalTag.js"></script>
+        <script type="text/javascript" src="js/GlobalCard.js"></script>
+        <script type="text/javascript" src="js/ProjectViewer.js"></script>
         <script type="text/javascript" src="js/GlobalPlanet.js"></script>
+
         <script type="text/javascript" src="js/Planet.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </head>
@@ -31,14 +37,14 @@
             <div class="nav-wrapper container">
                 <a id="logo-container" href="#" class="brand-logo"><i class="material-icons" id="planeticon">public</i>Planet</a>
                 <ul class="right tabs tabs-transparent" id="localglobal">
-                    <li class="tab"><a class="active" href="#local" onclick="toggleSearch(false);">Local</a></li>
-                    <li class="tab"><a href="#global" onclick="toggleSearch(true);">Global</a></li>
+                    <li class="tab"><a class="active" id="local-tab" href="#local" onclick="toggleSearch(false);">Local</a></li>
+                    <li class="tab"><a id="global-tab" href="#global" onclick="toggleSearch(true);">Global</a></li>
                 </ul>
             </div>
             <div class="nav-content" id="searchcontainer" style="display: none;">
                 <div class="container">
                     <div class="input-field search">
-                        <i class="material-icons prefix" id="searchicon">search</i><input placeholder="Search for a project" id="global-search" type="text"><span><i class="material-icons" id="search-close" onclick="clearSearchBar();">clear</i></span>
+                        <i class="material-icons prefix" id="searchicon">search</i><input placeholder="Search for a project" id="global-search" type="text"><span><i class="material-icons" id="search-close">clear</i></span>
                     </div>
                 </div>
             </div>
@@ -121,7 +127,7 @@
                 </div>
             </div>
             <div id="globalcontents">
-                <div class="section flexcontainer">
+                <div class="section flexcontainer" id="tagscontainer">
                     <div class="container">
                         <div class="flexchips", id="primarychips">
                         </div>
@@ -131,6 +137,7 @@
                     </div>
                 </div>
                 <div class="container">
+                    <div class="divider"></div>
                     <div class="section">
                         <div class="row">
                             <div class="input-field col s3 offset-s9">
@@ -145,11 +152,54 @@
                         </div>
                         <div class="row">
                             <div class="col no-margin-left s12">
-                                <div class="section projectscontainer" id="globalprojects">
+                                <div class="section projectscontainer" id="global-projects">
+                                </div>
+                                <a class="waves-effect btn-flat centre-button absolute" id="load-more-projects" style="display: none;">Load More Projects</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="preloader-wrapper small active centre-load" id="global-load" style="display: none;">
+                                <div class="spinner-layer spinner-blue">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div><div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div><div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+
+                                <div class="spinner-layer spinner-red">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div><div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div><div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+
+                                <div class="spinner-layer spinner-yellow">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div><div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div><div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+
+                                <div class="spinner-layer spinner-green">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div><div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div><div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <a class="waves-effect btn-flat centre-button" id="load-more-projects">Load More Projects</a>
                     </div>
                 </div>
             </div>
@@ -162,6 +212,9 @@
                             <div class="col no-margin-left s6">
                                 <div class="row no-margin-bottom">
                                     <p>
+                                        <div class="subheading">Last Updated</div><div id="projectviewer-last-updated"></div>
+                                    </p>
+                                    <p>
                                         <div class="subheading">Creation Date</div><div id="projectviewer-date"></div>
                                     </p>
                                     <p>
@@ -170,10 +223,13 @@
                                     <p>
                                         <div class="subheading">Number of Likes:</div><div id="projectviewer-likes"></div>
                                     </p>
+                                    <p>
+                                        <div class="subheading">Tags:</div><div id="projectviewer-tags"></div>
+                                    </p>
                                 </div>
                             </div>
                             <div class="col no-margin-left s6">
-                                <img class="col no-margin-left s12 project-image" id="publish-image">
+                                <img class="col no-margin-left s12 project-image no-padding" id="projectviewer-image">
                             </div>
                         </div>
                         <div class="row">
@@ -187,6 +243,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <a class="modal-action waves-effect waves-green btn-flat" id="projectviewer-download-file">Download as File</a>
                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Open in Music Blocks</a>
                 </div>
             </div>

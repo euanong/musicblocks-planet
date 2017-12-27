@@ -58,6 +58,7 @@ function LocalPlanet(Planet){
 		for (var i = 0; i<this.projects.length; i++){
 			this.projects[i][1].render();
 		}
+		$('.tooltipped').tooltip({delay: 50});
 	};
 
 	this.initDeleteModal = function(){
