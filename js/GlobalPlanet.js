@@ -163,18 +163,21 @@ function GlobalPlanet(Planet) {
 			}
 		}
 		this.loadCount=toDownload.length;
-		if (data.length==0){
+		var l = data.length;
+		if (l==this.page+1){
+			data.pop();
+		}
+		if (l==0){
 			this.throwNoProjectsError();
 			this.afterAddProjects();
 		} else if (this.loadCount==0){
 			this.render(data);
-			if (data.length==this.page+1){
+			if (l==this.page+1){
 				this.showLoadMore();
 			} else {
 				this.hideLoadMore();
 			}
-		} else if (data.length==this.page+1){
-			data.pop();
+		} else if (l==this.page+1){
 			this.downloadProjectsToCache(toDownload,function(){this.render(data);this.showLoadMore();}.bind(this));
 		} else {
 			this.downloadProjectsToCache(toDownload,function(){this.render(data);this.hideLoadMore();}.bind(this));
