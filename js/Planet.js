@@ -30,6 +30,8 @@ function Planet(isMusicBlocks){
 	this.init = function(callback){
 		this.ProjectStorage = new ProjectStorage(this);
 		this.ProjectStorage.init();
+		this.LocalPlanet = new LocalPlanet(this);
+		this.LocalPlanet.init();
 		this.ServerInterface = new ServerInterface(this);
 		this.ServerInterface.init();
 		this.ServerInterface.getTagManifest(function(data){this.initPlanets(data,callback)}.bind(this));
@@ -42,8 +44,6 @@ function Planet(isMusicBlocks){
 			this.ConnectedToServer = true;
 			this.TagsManifest = tags.data;
 		}
-		this.LocalPlanet = new LocalPlanet(this);
-		this.LocalPlanet.init();
 		this.GlobalPlanet = new GlobalPlanet(this);
 		this.GlobalPlanet.init();
 		if (callback!=undefined){
